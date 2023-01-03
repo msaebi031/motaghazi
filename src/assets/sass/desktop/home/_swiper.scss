@@ -1,0 +1,87 @@
+// swiperMobile
+#swiper {
+  img {
+    border-radius: 10px;
+    width: 100%;
+    position: relative;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: #fff;
+    opacity: 1;
+    border-radius: 4px;
+    padding: 4px;
+    @include transform;
+
+    &:hover {
+      background-color: $green;
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: $green !important;
+  }
+
+  .swiper-pagination {
+    bottom: 20px;
+    right: 40.5%;
+  }
+
+  @media screen and (max-width: 911px) {
+    .swiper-pagination {
+      bottom: 12px;
+      right: 38.5%;
+    }
+
+    .swiper-pagination-bullet {
+      background-color: #fff;
+      opacity: 1;
+      border-radius: 4px;
+      padding: 3px;
+    }
+  }
+
+  @media screen and (max-width: 470px) {
+    .swiper-pagination {
+      bottom: 15px;
+      right: 32.5%;
+    }
+
+    .swiper-pagination-bullet {
+      background-color: #fff;
+      opacity: 1;
+      border-radius: 4px;
+      padding: 2.6px;
+    }
+
+    img {
+      border-radius: 10px;
+      width: 100%;
+      position: relative;
+      height: 240px !important;
+    }
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .textSwiper {
+    padding: 20px 10px;
+
+    h4 {
+      position: relative;
+
+      &::before {
+        content: "";
+        width: 60px;
+        height: 3px;
+        position: absolute;
+        bottom: -8.5px !important;
+        border-radius: 2px;
+      }
+    }
+  }
+}

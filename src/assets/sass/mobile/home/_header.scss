@@ -1,0 +1,39 @@
+// Navbar
+#navbar-mobile {
+  background-image: linear-gradient(-90deg, $theme-color, $purple);
+  padding: 10px 0;
+
+  .menuIcon {
+    color: #fff;
+    padding-left: 0;
+  }
+  .search {
+    background-color: #fff;
+    padding: 3px 12px;
+    border-radius: 6px;
+    box-shadow: 0 0 18px rgb(159 171 180 / 65%);
+    input {
+      font-size: 13px;
+    }
+    fieldset {
+      border: none;
+    }
+    span {
+      width: 20%;
+    }
+  }
+}
+.logoMob {
+  width: 95px;
+  height: 30px;
+}
+.drawerHeader {
+  padding: 15px;
+}
+.itemHeader {
+  padding-top: 10px;
+  .boxItemHeader {
+    margin: 5px;
+    padding: 22px 15px;
+  }
+}

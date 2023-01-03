@@ -1,0 +1,66 @@
+// demand
+#demand {
+  img {
+    margin: 18px auto 5px;
+    width: 87%;
+    border-radius: 10px;
+  }
+  .titleCard {
+    @include textTrancate;
+    font-weight: 600;
+    line-height: 22px;
+    font-size: 15px;
+  }
+  .locationCard {
+    @include textTrancate;
+    svg {
+      font-size: 19px;
+    }
+    div {
+      font-size: 14.5px;
+    }
+  }
+  .infCard {
+    svg {
+      font-size: 15px;
+      padding-bottom: 3.5px;
+      padding-left: 5px;
+    }
+    div {
+      font-size: 13px;
+    }
+  }
+  .cardContent {
+    padding-bottom: 0 !important;
+  }
+  .status {
+    width: 60px;
+    height: 20px;
+    position: absolute;
+    left: 7px;
+    transform: rotate(-45deg);
+    top: 27px;
+    font-size: 0.85em;
+    font-weight: 800;
+    line-height: 20px;
+    text-align: center;
+    color: #f2f2f2;
+    &::before,
+    &::after {
+      content: "";
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: 0;
+      border-top: 20px solid transparent;
+    }
+    &::before {
+      right: -20px;
+      border-left: 20px solid transparent;
+    }
+    &::after {
+      left: -20px;
+      border-right: 20px solid transparent;
+    }
+  }
+}

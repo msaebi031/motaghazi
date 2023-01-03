@@ -1,0 +1,30 @@
+// Category
+.stickyCategory {
+  position: sticky;
+  /* right: 0; */
+  height: 100%;
+  top: 20px;
+}
+
+#category {
+  span {
+    font-size: 0.9em;
+    line-height: 50px;
+  }
+  hr {
+    border-color: rgb(171 171 171 / 12%);
+  }
+
+  .childCategory {
+    border-left: 3px solid #fff;
+    @include transform();
+
+    &:hover {
+      box-shadow: 0 0 10px rgb(159 171 180 / 14%);
+      border-left-color: $green;
+      span {
+        color: $green;
+      }
+    }
+  }
+}

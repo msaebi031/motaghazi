@@ -1,0 +1,61 @@
+// Search
+@mixin input {
+  height: 20px;
+  line-height: 40px;
+  color: $secondary;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 3px #8f8f8f;
+  cursor: pointer;
+}
+
+#search {
+  padding: 34px 20px;
+  input {
+    @include input;
+    font-size: 12.5px;
+    &:hover {
+      border: 0 !important;
+      outline: none !important;
+    }
+  }
+  fieldset {
+    border: none;
+  }
+  .selector {
+    @include input;
+    @include transform;
+    padding: 16px;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+  button {
+    color: #fff;
+    padding: 12px 0;
+    width: 100%;
+    font-size: 14px;
+    span {
+      margin-left: 0;
+    }
+    svg {
+      padding-right: 10px;
+    }
+  }
+}
+
+.cardSearch {
+  box-shadow: 0 0 18px rgb(159 171 180 / 60%);
+  background-color: #fff;
+  border-radius: 5px;
+  svg {
+    color: #aeaeae;
+  }
+  .svg {
+    padding-left: 5px;
+  }
+  span {
+    @include textTrancate();
+    font-size: 12.5px;
+  }
+}
