@@ -7,21 +7,40 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   handleChangeBShow,
   handleChangeLabelCategory,
+  handleChangeRootSelect,
   handleChangeShow,
 } from "../../../redux/category";
 
 // Import Utils
-import { ShowCard } from "./utils";
+import { SetRouterCategory, ShowCard } from "./utils";
+
+// Import Router
+import { useRouter } from "next/router";
 
 const Category = () => {
   // ======= Redux ======== //
   const { category } = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  // ======= UseRouter ======== //
+  const router = useRouter();
+
   // ======= Handles ======== //
   // handle for Select Cagory
-  const handleClick = (code, name) => {
-    dispatch(handleChangeShow(code));
+  const handleClick = (code, name, alias, rootSelect) => {
+    const pathname = router.asPath.split("/");
+    if (code != category.show) {
+      dispatch(handleChangeShow(code));
+    } else {
+      dispatch(handleChangeShow("title"));
+    }
+    if (rootSelect) {
+      dispatch(handleChangeRootSelect(rootSelect));
+    }
+    router.push(SetRouterCategory(alias, pathname[2]), null, {
+      shallow: true,
+      scroll: false,
+    });
     dispatch(handleChangeLabelCategory(name));
   };
 
@@ -44,7 +63,11 @@ const Category = () => {
       {/* Start No Select Category , Show Root Category */}
       {!category.show ? (
         category.root.map((items) => (
-          <ShowCard items={items} handleClick={handleClick} />
+          <ShowCard
+            items={items}
+            rootSelect={items.code}
+            handleClick={handleClick}
+          />
         ))
       ) : (
         // End No Select Category , Show Root Category
@@ -68,16 +91,6 @@ const Category = () => {
           <Divider />
           {handleFind(category.show) ? (
             <>
-              <ShowCard
-                items={{
-                  name:
-                    category.label.search("همه") > 0
-                      ? category.label
-                      : `${category.label} (همه)`,
-                  code: "title",
-                }}
-                handleClick={handleClick}
-              />
               {handleFind(category.show).map((items) => (
                 <ShowCard items={items} handleClick={handleClick} />
               ))}
@@ -85,6 +98,7 @@ const Category = () => {
             </>
           ) : (
             // Start Selected Category, Not Parent,Show  In Search
+
             <Box className="d-flex align-center" px={2}>
               <DoneAllRounded color="successLight" />
               <Typography

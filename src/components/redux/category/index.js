@@ -9,6 +9,7 @@ const initialState = {
   show: "",
   bShow: "",
   name: {},
+  rootSelect: "",
 };
 
 const cartSlice = createSlice({
@@ -40,6 +41,9 @@ const cartSlice = createSlice({
     handleChangeName: (state, action) => {
       state.name = action.payload;
     },
+    handleChangeRootSelect: (state, action) => {
+      state.rootSelect = action.payload;
+    },
   },
 });
 
@@ -52,6 +56,7 @@ export const {
   handleChangeShow,
   handleChangeBShow,
   handleChangeName,
+  handleChangeRootSelect,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

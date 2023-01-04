@@ -9,11 +9,15 @@ import {
   handleChangeBShow,
   handleChangeName,
   handleChangeLabelCategory,
+  handleChangeRootSelect,
 } from "../../../../../redux/category";
 // Import Utils
-import ExistArrow from "../Utils/ExistArrow";
+import { ExistArrow, SelectItem } from "../Utils/ExistArrow";
+import { SetRouterCategory } from "../../../../Content/Category/utils";
+
 // Import Router
-import { useRouter, withRouter } from "next/router";
+import { useRouter } from "next/router";
+
 // Import React
 import { Fragment } from "react";
 
@@ -27,6 +31,7 @@ const Category = ({ handleClose }) => {
   // ======= Redux ======== //
   const { category } = useSelector((state) => state);
   const dispatch = useDispatch();
+
   // ======= UseRouter ======== //
   const router = useRouter();
 
@@ -40,36 +45,33 @@ const Category = ({ handleClose }) => {
   };
 
   //  Handle For Select Item
-  const handleSelect = ({ code, name }) => {
+  const handleSelect = ({ alias, code, name }) => {
     const pathname = router.asPath.split("/");
-    if (code != "all") {
-      if (pathname[2]) {
-        router.push(`/s/${pathname[2]}/${code}`, null, { shallow: true });
-      } else {
-        router.push(`/s/iran/${code}`, null, { shallow: true });
-      }
-    } else {
-      if (pathname[2]) {
-        router.push(`/s/${pathname[2]}`, null, { shallow: true });
-      } else {
-        router.push(`/s/iran`, null, { shallow: true });
-      }
-    }
+    console.log(alias);
     dispatch(handleChangeLabelCategory(name));
-    // router.push({ href: "/", query: { myQueryParam: code } });
+    console.log(pathname);
+    router.push(SetRouterCategory(alias, pathname[2]), null, {
+      shallow: true,
+      scroll: false,
+    });
     handleClose();
   };
 
   // Handle For Select Category
-  const handleSelectArrow = ({ code, name, alias }) => {
+  const handleSelectArrow = ({ code, name, alias, rootSelect }) => {
     dispatch(handleChangeShow(code));
-    dispatch(handleChangeName({ name, alias }));
+    dispatch(handleChangeName({ name, alias, code }));
+    dispatch(handleChangeLabelCategory(name));
+    if (rootSelect) {
+      dispatch(handleChangeRootSelect(rootSelect));
+    }
   };
 
   // Handle For Back Category
   const handleBack = () => {
     dispatch(handleChangeShow(category.bShow));
     dispatch(handleChangeBShow(""));
+    dispatch(handleChangeLabelCategory(category.bShow));
   };
 
   return (
@@ -79,15 +81,13 @@ const Category = ({ handleClose }) => {
         {/* Start Category and if */}
         {!category.show ? (
           <>
-            <Box
-              onClick={() =>
-                handleSelect({ code: "all", name: "دسته بندی ها (همه)" })
-              }
-            >
-              <Box component="span" className="d-flex">
-                دسته بندی ها (همه)
-              </Box>
-            </Box>
+            <SelectItem
+              parent={{
+                alias: "all",
+                name: "دسته بندی ها (همه)",
+              }}
+              handleSelect={handleSelect}
+            />
             {/* Category Root For Map */}
             {category.root.map((items) => {
               const find = category.parent.find((p) => p.code == items.code);
@@ -97,20 +97,12 @@ const Category = ({ handleClose }) => {
                     data={items}
                     handleSelectArrow={handleSelectArrow}
                     count={find.item.length}
+                    rootSelect={items.code}
                   />
                 );
               } else {
                 return (
-                  <Box
-                    className="d-flex"
-                    onClick={() =>
-                      handleSelect({ code: items.alias, name: items.name })
-                    }
-                  >
-                    <Typography component="span" variant="body1">
-                      {items.name}
-                    </Typography>
-                  </Box>
+                  <SelectItem parent={items} handleSelect={handleSelect} />
                 );
               }
             })}
@@ -125,20 +117,9 @@ const Category = ({ handleClose }) => {
               <KeyboardArrowRightRoundedIcon />
               <Box component="span">بازگشت</Box>
             </Box>
-            <Box
-              onClick={() =>
-                handleSelect({
-                  code: category.name.alias,
-                  name: `${category.name.name} (همه)`,
-                })
-              }
-            >
-              <Box component="span" className="d-flex">
-                {category.name.name} (همه)
-              </Box>
-            </Box>
+
             {findItem(category.show).map((parent) => {
-              if (findItem(parent.code)) {
+              if (findItem(parent.code) && !parent.Utitle) {
                 return (
                   <ExistArrow
                     data={parent}
@@ -147,16 +128,7 @@ const Category = ({ handleClose }) => {
                 );
               } else {
                 return (
-                  <Box
-                    className="d-flex"
-                    onClick={() =>
-                      handleSelect({ code: parent.alias, name: parent.name })
-                    }
-                  >
-                    <Typography component="span" variant="body1">
-                      {parent.name}
-                    </Typography>
-                  </Box>
+                  <SelectItem parent={parent} handleSelect={handleSelect} />
                 );
               }
             })}

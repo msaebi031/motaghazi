@@ -17,7 +17,8 @@ import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRigh
 // Import Mui
 import { Box, Typography } from "@mui/material";
 // Import Utils
-import ExistArrow from "../Utils/ExistArrow";
+import { ExistArrow, SelectItem } from "../Utils/ExistArrow";
+import { SetRouterLocation } from "../../../../Content/Category/utils";
 
 // ======= handleSelectArrow ======== //
 export const handleSelectArrow = (code) => {
@@ -52,23 +53,14 @@ const Location = ({ handleClose }) => {
   };
 
   // ======= Handle For Select ======== //
-  const handleSelect = ({ code, name }) => {
+  const handleSelect = ({ alias, code, name }) => {
     const pathname = router.asPath.split("/");
-    if (code != "all") {
-      if (pathname[2]) {
-        router.push(`/s/${code}/${pathname[3]}`, null, { shallow: true });
-      } else {
-        router.push(`/s/${code}`, null, { shallow: true });
-      }
-    } else {
-      if (pathname[3]) {
-        router.push(`/s/${code}/${pathname[3]}`, null, { shallow: true });
-      } else {
-        router.push(`/s/${code}`, null, { shallow: true });
-      }
-    }
     dispatch(handleChangeLabelLocation(name));
     // router.push({ href: "/", query: { myQueryParam: code } });
+    router.push(SetRouterLocation(alias, pathname[3]), null, {
+      shallow: true,
+      scroll: false,
+    });
     handleClose();
   };
 
@@ -99,10 +91,12 @@ const Location = ({ handleClose }) => {
         {!location.show ? (
           <>
             <Box
-              onClick={() => handleSelect({ code: "all", name: "ایران (همه)" })}
+              onClick={() =>
+                handleSelect({ alias: "all", name: "ایران (همه)" })
+              }
             >
               <Box component="span" className="d-flex">
-                موقعیت (همه)
+                ایران (همه)
               </Box>
             </Box>
             {/*Start location Provinces Map */}
@@ -124,16 +118,7 @@ const Location = ({ handleClose }) => {
                 );
               } else {
                 return (
-                  <Box
-                    className="d-flex"
-                    onClick={() =>
-                      handleSelect({ code: items.alias, name: items.name })
-                    }
-                  >
-                    <Typography component="span" variant="body1">
-                      {items.name}
-                    </Typography>
-                  </Box>
+                  <SelectItem parent={items} handleSelect={handleSelect} />
                 );
               }
               {
@@ -154,7 +139,7 @@ const Location = ({ handleClose }) => {
             <Box
               onClick={() =>
                 handleSelect({
-                  code: location.name.alias,
+                  alias: location.name.alias,
                   name: `${location.name.name} (همه)`,
                 })
               }
@@ -182,19 +167,7 @@ const Location = ({ handleClose }) => {
                     );
                   } else {
                     return (
-                      <Box
-                        className="d-flex"
-                        onClick={() =>
-                          handleSelect({
-                            code: parent.alias,
-                            name: parent.name,
-                          })
-                        }
-                      >
-                        <Typography component="span" variant="body1">
-                          {parent.name}
-                        </Typography>
-                      </Box>
+                      <SelectItem parent={parent} handleSelect={handleSelect} />
                     );
                   }
                   {
@@ -203,16 +176,7 @@ const Location = ({ handleClose }) => {
                 })
               : findNeighbourhoods(location.show).map((parent) => {
                   return (
-                    <Box
-                      className="d-flex"
-                      onClick={() =>
-                        handleSelect({ code: parent.alias, name: parent.name })
-                      }
-                    >
-                      <Typography component="span" variant="body1">
-                        {parent.name}
-                      </Typography>
-                    </Box>
+                    <SelectItem parent={parent} handleSelect={handleSelect} />
                   );
                 })}
             {/* Start  location BShow For If*/}

@@ -24,10 +24,7 @@ import Category from "./Category";
 // Import Location
 import Location from "./Location";
 
-
-
 const Category_Location = () => {
-
   // ======= Get Category Location ======== //
   const { category, location } = useSelector((state) => state);
 
@@ -37,78 +34,96 @@ const Category_Location = () => {
   // ======= UseEffect For Add ======== //
   useEffect(() => {
     // For Add Category
-    http
-      .get("/category/categories")
-      .then(async (result) => {
-        dispatch(addAllCategory(result.data.categories));
-        var newArray = [];
-        result.data.categories?.map((item) => {
-          if (item.parent != null) {
-            const index = newArray.findIndex((p) => p.code == item.parent.code);
-            if (index == "-1") {
-              newArray.push({ code: item.parent.code, item: [item] });
+    if (!category.all.length > 0) {
+      http
+        .get("/category/categories")
+        .then(async (result) => {
+          dispatch(addAllCategory(result.data.categories));
+          var newArray = [];
+          result.data.categories?.map((item) => {
+            if (item.parent != null) {
+              const index = newArray.findIndex(
+                (p) => p.code == item.parent.code
+              );
+              if (index == "-1") {
+                const find = result.data.categories.find(
+                  (p) => p.code == item.parent.code
+                );
+                newArray.push({
+                  code: item.parent.code,
+                  item: [
+                    {
+                      alias: find.alias,
+                      code: find.code,
+                      name: `${find.name} (همه)`,
+                      Utitle: true,
+                    },
+                    item,
+                  ],
+                });
+              } else {
+                const array = newArray[index];
+                array.item.push(item);
+                newArray[index] = array;
+              }
             } else {
-              const array = newArray[index];
-              array.item.push(item);
-              newArray[index] = array;
+              dispatch(addRootCategory(item));
             }
-          } else {
-            dispatch(addRootCategory(item));
-          }
-        });
-        dispatch(addParentCategory(newArray));
-        console.log(newArray);
-      })
-      .catch((err) => console.log(err));
-    // For Add Location
-    http
-      .get("/location/all-places")
-      .then(async (result) => {
-        dispatch(addAllLocation(result.data.places.provinces));
-        dispatch(addAllLocation(result.data.places.cities));
-        dispatch(addAllLocation(result.data.places.neighbourhoods));
-        result.data.places?.provinces.map((item) => {
-          if (item.province == null) {
-            dispatch(addProvincesLocation(item));
-          }
-        });
+          });
+          dispatch(addParentCategory(newArray));
+          console.log(newArray);
+        })
+        .catch((err) => console.log(err));
+      // For Add Location
+      http
+        .get("/location/all-places")
+        .then(async (result) => {
+          dispatch(addAllLocation(result.data.places.provinces));
+          dispatch(addAllLocation(result.data.places.cities));
+          dispatch(addAllLocation(result.data.places.neighbourhoods));
+          result.data.places?.provinces.map((item) => {
+            if (item.province == null) {
+              dispatch(addProvincesLocation(item));
+            }
+          });
 
-        var newCities = [];
-        result.data.places?.cities.map((item) => {
-          if (item.province != null) {
-            const index = newCities.findIndex(
-              (p) => p.province == item.province.alias
+          var newCities = [];
+          result.data.places?.cities.map((item) => {
+            if (item.province != null) {
+              const index = newCities.findIndex(
+                (p) => p.province == item.province.alias
+              );
+              if (index == "-1") {
+                newCities.push({ province: item.province.alias, item: [item] });
+              } else {
+                const array = newCities[index];
+                array.item.push(item);
+                newCities[index] = array;
+              }
+            }
+          });
+          dispatch(addCitiesLocation(newCities));
+
+          var newNeighbourhoods = [];
+          result.data.places?.neighbourhoods.map((item) => {
+            const index = newNeighbourhoods.findIndex(
+              (p) => p.province == item.city.alias
             );
             if (index == "-1") {
-              newCities.push({ province: item.province.alias, item: [item] });
+              newNeighbourhoods.push({
+                province: item.city.alias,
+                item: [item],
+              });
             } else {
-              const array = newCities[index];
+              const array = newNeighbourhoods[index];
               array.item.push(item);
-              newCities[index] = array;
+              newNeighbourhoods[index] = array;
             }
-          }
-        });
-        dispatch(addCitiesLocation(newCities));
-
-        var newNeighbourhoods = [];
-        result.data.places?.neighbourhoods.map((item) => {
-          const index = newNeighbourhoods.findIndex(
-            (p) => p.province == item.city.alias
-          );
-          if (index == "-1") {
-            newNeighbourhoods.push({
-              province: item.city.alias,
-              item: [item],
-            });
-          } else {
-            const array = newNeighbourhoods[index];
-            array.item.push(item);
-            newNeighbourhoods[index] = array;
-          }
-        });
-        dispatch(addNeighbourhoodsLocation(newNeighbourhoods));
-      })
-      .catch((err) => console.log(err));
+          });
+          dispatch(addNeighbourhoodsLocation(newNeighbourhoods));
+        })
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   return (

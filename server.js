@@ -13,10 +13,6 @@ const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 
 app.prepare().then(async () => {
-  server.get("/s/*", (req, res) => {
-    res.json({ result: true });
-  });
-
   server.all("*", (req, res) => {
     return handle(req, res);
   });
