@@ -9,12 +9,7 @@ axios.interceptors.response.use(null, (error) => {
     error.response.status >= 400 &&
     error.response.status < 500;
   if (!expectedErrors) {
-    // console.log(error);
-    // toast.error("Error Server!", {
-    //     position: "top-right",
-    //     closeOnClick: true
-    // });
-    console.log("Error Server!");
+    console.log("مشکل در ارتباط با سرور ، لطفا مجددا صفحه رو بارگزاری کنید");
   }
 
   return Promise.reject(error);
