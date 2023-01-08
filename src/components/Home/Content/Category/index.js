@@ -16,15 +16,17 @@ import { SetRouterCategory, ShowCard } from "./utils";
 
 // Import Router
 import { useRouter } from "next/router";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
 const Category = () => {
+  const { t } = useTranslation("basic");
   // ======= Redux ======== //
   const { category } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   // ======= UseRouter ======== //
   const router = useRouter();
-
   // ======= Handles ======== //
   // handle for Select Cagory
   const handleClick = (code, name, alias, rootSelect) => {
@@ -37,10 +39,10 @@ const Category = () => {
     if (rootSelect) {
       dispatch(handleChangeRootSelect(rootSelect));
     }
-    router.push(SetRouterCategory(alias, pathname[2]), null, {
-      shallow: true,
+    router.replace(SetRouterCategory(alias, pathname[2]), null, {
       scroll: false,
     });
+
     dispatch(handleChangeLabelCategory(name));
   };
 
@@ -62,8 +64,9 @@ const Category = () => {
     <Box className="card" id="category" px={1} pb={1}>
       {/* Start No Select Category , Show Root Category */}
       {!category.show ? (
-        category.root.map((items) => (
+        category.root.map((items, index) => (
           <ShowCard
+            key={index}
             items={items}
             rootSelect={items.code}
             handleClick={handleClick}
@@ -85,21 +88,21 @@ const Category = () => {
               color="success.main"
               pr={2}
             >
-              بازگشت
+              {t("home.content.category.comingBack")}
             </Typography>
           </Box>
           <Divider />
           {handleFind(category.show) ? (
             <>
-              {handleFind(category.show).map((items) => (
-                <ShowCard items={items} handleClick={handleClick} />
+              {handleFind(category.show).map((items, index) => (
+                <ShowCard key={index} items={items} handleClick={handleClick} />
               ))}
               {/* End Show Selected Category  */}
             </>
           ) : (
             // Start Selected Category, Not Parent,Show  In Search
 
-            <Box className="d-flex align-center" px={2}>
+            <Box className="d-flex align-center" px={{ md: 1, lg: 2 }}>
               <DoneAllRounded color="successLight" />
               <Typography
                 component="span"
@@ -107,7 +110,7 @@ const Category = () => {
                 color="secondary.dark"
                 pr={2}
               >
-                متقاضیان {category.label}
+                {t("home.content.category.applicants")} {category.label}
               </Typography>
             </Box>
             // End Selected Category, Not Parent,Show  In Search

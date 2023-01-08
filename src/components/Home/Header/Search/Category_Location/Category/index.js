@@ -10,6 +10,7 @@ import {
   handleChangeName,
   handleChangeLabelCategory,
   handleChangeRootSelect,
+  handleChangeSelect,
 } from "../../../../../redux/category";
 // Import Utils
 import { ExistArrow, SelectItem } from "../Utils/ExistArrow";
@@ -17,9 +18,10 @@ import { SetRouterCategory } from "../../../../Content/Category/utils";
 
 // Import Router
 import { useRouter } from "next/router";
-
 // Import React
 import { Fragment } from "react";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
 // ======= handleSelectArrow ======== //
 export const handleSelectArrow = (code) => {
@@ -28,6 +30,7 @@ export const handleSelectArrow = (code) => {
 };
 
 const Category = ({ handleClose }) => {
+  const { t } = useTranslation("basic");
   // ======= Redux ======== //
   const { category } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -41,17 +44,13 @@ const Category = ({ handleClose }) => {
     const find = category.parent.find((p) => p.code == code);
     if (find) {
       return find.item;
-    } else return undefined;
+    } else return "";
   };
 
   //  Handle For Select Item
   const handleSelect = ({ alias, code, name }) => {
     const pathname = router.asPath.split("/");
-    console.log(alias);
-    dispatch(handleChangeLabelCategory(name));
-    console.log(pathname);
-    router.push(SetRouterCategory(alias, pathname[2]), null, {
-      shallow: true,
+    router.replace(SetRouterCategory(alias, pathname[2]), null, {
       scroll: false,
     });
     handleClose();
@@ -71,7 +70,6 @@ const Category = ({ handleClose }) => {
   const handleBack = () => {
     dispatch(handleChangeShow(category.bShow));
     dispatch(handleChangeBShow(""));
-    dispatch(handleChangeLabelCategory(category.bShow));
   };
 
   return (
@@ -84,16 +82,17 @@ const Category = ({ handleClose }) => {
             <SelectItem
               parent={{
                 alias: "all",
-                name: "دسته بندی ها (همه)",
+                name: t("home.category.all-categories"),
               }}
               handleSelect={handleSelect}
             />
             {/* Category Root For Map */}
-            {category.root.map((items) => {
+            {category.root.map((items, index) => {
               const find = category.parent.find((p) => p.code == items.code);
               if (find) {
                 return (
                   <ExistArrow
+                    key={index}
                     data={items}
                     handleSelectArrow={handleSelectArrow}
                     count={find.item.length}
@@ -102,7 +101,12 @@ const Category = ({ handleClose }) => {
                 );
               } else {
                 return (
-                  <SelectItem parent={items} handleSelect={handleSelect} />
+                  <SelectItem
+                    key={index}
+                    select={category.select}
+                    parent={items}
+                    handleSelect={handleSelect}
+                  />
                 );
               }
             })}
@@ -115,20 +119,26 @@ const Category = ({ handleClose }) => {
               onClick={() => handleBack()}
             >
               <KeyboardArrowRightRoundedIcon />
-              <Box component="span">بازگشت</Box>
+              <Box component="span"> {t("home.category.comingBack")}</Box>
             </Box>
 
-            {findItem(category.show).map((parent) => {
+            {findItem(category.show).map((parent, index) => {
               if (findItem(parent.code) && !parent.Utitle) {
                 return (
                   <ExistArrow
+                    key={index}
                     data={parent}
                     handleSelectArrow={handleSelectArrow}
                   />
                 );
               } else {
                 return (
-                  <SelectItem parent={parent} handleSelect={handleSelect} />
+                  <SelectItem
+                    key={index}
+                    parent={parent}
+                    select={category.select}
+                    handleSelect={handleSelect}
+                  />
                 );
               }
             })}

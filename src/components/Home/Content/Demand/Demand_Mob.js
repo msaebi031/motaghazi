@@ -9,8 +9,11 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 // Import Utils
 import { timeAgo } from "../../../utils/ConvertTime";
 import { statusColor } from "./Utils/ConfigColorDemand";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
-const Demand_Mob = ({ demand }) => {
+const Demand_Mob = ({ demand, icon }) => {
+  const { t } = useTranslation("basic");
   return (
     <Grid2 container spacing={2} pt={2.5} px={0}>
       {/* Start Card Demand Size xs,sm */}
@@ -18,14 +21,7 @@ const Demand_Mob = ({ demand }) => {
         let title = items.title.replaceAll(/\s+/g, "-");
         let status = statusColor(items.type);
         return (
-          <Grid2
-            key={index}
-            item
-            xs={12}
-            md={4}
-            className="p-relative"
-            id="demand"
-          >
+          <Grid2 key={index} item xs={12} className="p-relative" id="demand">
             <Link href={`/r/${items.code}/${title}`} title={items.title}>
               {status ? (
                 <Box
@@ -47,8 +43,13 @@ const Demand_Mob = ({ demand }) => {
                 ""
               )}
               <Card className="card" id="demandMobile">
-                <Grid2 container>
-                  <Grid2 item xs={8}>
+                <Grid2
+                  container
+                  className="justify-between"
+                  p={0}
+                  sx={{ flexWrap: "nowrap" }}
+                >
+                  <Grid2 item xs={8} sm={10}>
                     <CardContent className="cardContent">
                       <Typography
                         component="div"
@@ -91,19 +92,16 @@ const Demand_Mob = ({ demand }) => {
                             color="successLight.main"
                           >
                             {items.budget !== 0
-                              ? `${items.budget} تومان`
-                              : "توافقی"}
+                              ? `${items.budget} ${t("home.demand.toman")}`
+                              : t("home.demand.adaptive")}
                           </Typography>
                         </Box>
                       </Box>
                     </CardContent>
                   </Grid2>
-                  <Grid2 item xs={4}>
-                    <Box
-                      className="imgNoMobileDemand"
-                      ml={{ xs: "6px !important", sm: "12px !important" }}
-                    >
-                      <Box component="img" src="/imgs/logo.svg" />
+                  <Grid2 item>
+                    <Box className="imgNoMobileDemand">
+                      {icon ?? <Box component="img" src="/imgs/logo.svg" />}
                     </Box>
                   </Grid2>
                 </Grid2>

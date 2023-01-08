@@ -4,8 +4,11 @@ import { Box, Typography } from "@mui/material";
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
 // Import React
 import { Fragment } from "react";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
 const ExistArrow = ({ data, root, count, rootSelect, handleSelectArrow }) => {
+  const { t } = useTranslation("basic");
   // ======= Get Data ======== //
   const { name, code, alias } = data;
   return (
@@ -35,7 +38,7 @@ const ExistArrow = ({ data, root, count, rootSelect, handleSelectArrow }) => {
               color="secondary"
               pl={2}
             >
-              {count} زیر مجموعه
+              {count} {t("home.existArrow.subset")}
             </Typography>
           ) : (
             ""
@@ -50,10 +53,10 @@ const ExistArrow = ({ data, root, count, rootSelect, handleSelectArrow }) => {
   );
 };
 
-const SelectItem = ({ parent, handleSelect }) => {
+const SelectItem = ({ parent, select, handleSelect }) => {
   return (
     <Box
-      className="d-flex"
+      className={select == parent.alias ? "d-flex select" : "d-flex"}
       onClick={() =>
         handleSelect({
           alias: parent.alias,

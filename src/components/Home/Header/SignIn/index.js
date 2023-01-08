@@ -1,4 +1,4 @@
-// Imprt Mui 
+// Imprt Mui
 import { Box, Container, Typography } from "@mui/material";
 // Import Mui Icons
 import { AddRounded, VpnKeyOutlined } from "@mui/icons-material";
@@ -6,18 +6,21 @@ import { AddRounded, VpnKeyOutlined } from "@mui/icons-material";
 import Link from "next/link";
 // Import React
 import { Fragment } from "react";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
 const Signin = () => {
+  const { t } = useTranslation("basic");
 
   // ======= Items Menu ======== //
   const itemsMenu = [
     {
-      text: "ورود کاربران",
+      text: t("home.signin.users-sign-in"),
       icon: <VpnKeyOutlined />,
-      url: "#",
+      url: "/login",
     },
     {
-      text: "پنل فروشگاهی",
+      text: t("home.signin.shop-panel"),
       icon: <AddRounded />,
       url: "#",
     },
@@ -48,7 +51,7 @@ const Signin = () => {
           </Box>
 
           <Typography component="div" variant="subtitle2" color="secondary">
-            اولین سامانه مختص ثبت تقاضا به روش هدفمند
+            {t("home.signin.appSlogan")}
           </Typography>
         </Container>
       </Box>

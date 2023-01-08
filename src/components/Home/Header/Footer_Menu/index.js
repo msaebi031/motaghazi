@@ -16,44 +16,46 @@ import {
 } from "@mui/icons-material";
 // Import Mui
 import { Box, Container, Fab, Typography } from "@mui/material";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
 const Footer_Menu = () => {
+  const { t } = useTranslation("basic");
   // ======= Redux ======== //
   const { category, location, filter } = useSelector((state) => state);
   // ======= useRouter ======== //
   const router = useRouter();
-
   // ======= Start Items ======== //
   const items = [
     {
-      name: "خانه",
-      href: "/",
+      name: t("home.footerMenu.home"),
+      href: ["/", "/s/[location]", "/s/[location]/[category]"],
       icon: (
-        <OtherHousesOutlined sx={{ fontSize: { xs: "15px", sm: "large" } }} />
+        <OtherHousesOutlined sx={{ fontSize: { xs: "17px", sm: "large" } }} />
       ),
     },
     {
-      name: "پنل فروشگاهی",
-      href: "/;;",
-      icon: <AddOutlined sx={{ fontSize: { xs: "16px", sm: "large" } }} />,
+      name: t("home.footerMenu.asnaf"),
+      href: "/asnaf",
+      icon: <AddOutlined sx={{ fontSize: { xs: "17px", sm: "large" } }} />,
     },
     {
-      name: "پیام ها",
-      href: "/;;",
+      name: t("home.footerMenu.messages"),
+      href: "/messages",
       icon: (
-        <MailOutlineOutlined sx={{ fontSize: { xs: "15px", sm: "large" } }} />
+        <MailOutlineOutlined sx={{ fontSize: { xs: "17px", sm: "large" } }} />
       ),
     },
     {
-      name: "پنل کاربری",
-      href: "/s/iran",
+      name: t("home.footerMenu.panel"),
+      href: "/panel",
       icon: (
-        <AccessTimeOutlined sx={{ fontSize: { xs: "15px", sm: "large" } }} />
+        <AccessTimeOutlined sx={{ fontSize: { xs: "17px", sm: "large" } }} />
       ),
     },
     {
-      name: "تقاضای جدید",
-      href: "/;;",
+      name: t("home.footerMenu.newDemand"),
+      href: "/panel/my-requirements/new",
       icon: (
         <Fab
           sx={{ left: { xs: "2px", sm: "10%" } }}
@@ -88,12 +90,20 @@ const Footer_Menu = () => {
               <Link key={index} href={item.href}>
                 <Box
                   className={
-                    router.pathname === item.href
+                    typeof item.href == "object"
+                      ? item.href.find((element) => element == router.pathname)
+                        ? "box-item-before"
+                        : "box-item-hover"
+                      : router.pathname === item.href
                       ? "box-item-before"
                       : "box-item-hover"
                   }
                   color={
-                    router.pathname === item.href
+                    typeof item.href == "object"
+                      ? item.href.find((element) => element == router.pathname)
+                        ? "success.main"
+                        : "darkMenu.main"
+                      : router.pathname === item.href
                       ? "success.main"
                       : "darkMenu.main"
                   }
@@ -103,7 +113,7 @@ const Footer_Menu = () => {
                   {item.icon}
                   <Typography
                     pt={item.pt}
-                    fontSize={{ xs: "9px", sm: "11px" }}
+                    fontSize={{ xs: "9.5px", sm: "11px" }}
                     component="p"
                     variant="body2"
                   >

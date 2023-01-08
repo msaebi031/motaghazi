@@ -1,8 +1,12 @@
 // Import Mui
 import { Box, Typography } from "@mui/material";
 import { MobileFriendlyOutlined } from "@mui/icons-material";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
 const ShowCard = ({ items, handleClick, rootSelect }) => {
+  const { t } = useTranslation("basic");
+
   return (
     // Start ShowCard Category
     <Box
@@ -20,7 +24,7 @@ const ShowCard = ({ items, handleClick, rootSelect }) => {
         color="secondary.dark"
         pr={1}
       >
-        متقاضیان {items.name}
+        {t("home.content.category.applicants")} {items.name}
       </Typography>
     </Box>
     // End ShowCard Category
@@ -44,7 +48,6 @@ const SetRouterCategory = (alias, pathname) => {
 };
 
 const SetRouterLocation = (alias, pathname) => {
-  console.log(alias);
   if (alias != "all") {
     if (pathname) {
       return `/s/${alias}/${pathname}`;

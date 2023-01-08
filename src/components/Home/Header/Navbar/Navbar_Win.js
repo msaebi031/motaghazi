@@ -6,15 +6,19 @@ import { Fragment } from "react";
 import { Box, Button } from "@mui/material";
 // Import Mui Icons
 import { AddRounded } from "@mui/icons-material";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
 const Navbar_Win = () => {
+  const { t } = useTranslation("basic");
+
   // ======= Items Menu ======== //
   const itemsMenu = [
-    { text: "صفحه اصلی", url: "/" },
-    { text: "بلاگ", url: "/blog" },
-    { text: "قوانین و مقررات", url: "/blog/terms-conditions" },
-    { text: "درباره ما", url: "/blog/about-us" },
-    { text: "تماس با ما", url: "/blog/contact-us" },
+    { text: t("home.navbar.root"), url: "/" },
+    { text: t("home.navbar.blog"), url: "/blog" },
+    { text: t("home.navbar.terms-conditions"), url: "/blog/terms-conditions" },
+    { text: t("home.navbar.about"), url: "/blog/about-us" },
+    { text: t("home.navbar.contact"), url: "/blog/contact-us" },
   ];
 
   return (
@@ -30,8 +34,8 @@ const Navbar_Win = () => {
           <Box
             component="img"
             src={"/imgs/logo.svg"}
-            alt="سامانه متقاضی"
-            title="سامانه متقاضی"
+            alt={t("home.motaghazi")}
+            title={t("home.motaghazi")}
             className="logoWin"
           />
           <nav>
@@ -51,7 +55,7 @@ const Navbar_Win = () => {
           color="success"
           className="btnPlus"
         >
-          ثبت آگهی تقاضا
+          {t("home.registrationDemand")}
         </Button>
       </Box>
       {/* End Navbar At Windows */}

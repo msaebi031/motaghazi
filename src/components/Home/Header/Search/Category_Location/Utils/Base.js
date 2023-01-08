@@ -15,14 +15,26 @@ import { useTheme } from "@mui/material/styles";
 import { ClearRounded, KeyboardArrowRightRounded } from "@mui/icons-material";
 // Import React
 import { Fragment, useState } from "react";
+import { useDispatch } from "react-redux";
+import { handleChangeLabelCategory } from "../../../../../redux/category";
+import {
+  SetRouterCategory,
+  SetRouterLocation,
+} from "../../../../Content/Category/utils";
+import { useRouter } from "next/router";
+import { handleChangeLabelLocation } from "../../../../../redux/location";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
-const Base = ({ all, open, handleClose, title, component }) => {
-
+const Base = ({ all, open, handleClose, title, type, component }) => {
+  const { t } = useTranslation("basic");
   // ======= Get Size ======== //
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   const fullScreenMd = useMediaQuery(theme.breakpoints.up("md"));
-
+  // ======= UseRouter ======== //
+  const router = useRouter();
+  const dispatch = useDispatch();
   // UseState
   const [search, setSearch] = useState("");
 
@@ -33,6 +45,23 @@ const Base = ({ all, open, handleClose, title, component }) => {
       (val) => typeof val === "string" && val.includes(search)
     )
   );
+
+  const handleSelect = ({ alias, name }) => {
+    const pathname = router.asPath.split("/");
+    if (type == "category") {
+      dispatch(handleChangeLabelCategory(name));
+      router.replace(SetRouterCategory(alias, pathname[2]), null, {
+        scroll: false,
+      });
+    } else {
+      dispatch(handleChangeLabelLocation(name));
+      router.replace(SetRouterLocation(alias, pathname[3]), null, {
+        scroll: false,
+      });
+    }
+
+    handleClose();
+  };
 
   return (
     <Fragment>
@@ -64,7 +93,7 @@ const Base = ({ all, open, handleClose, title, component }) => {
                 </Button>
                 <OutlinedInput
                   id="outlined-adornment-weight"
-                  placeholder={`${title} خود را جستجو کنید`}
+                  placeholder={`${title} ${t("home.base.search-yourself")}`}
                   color="success"
                   fullWidth
                   onChange={(e) => setSearch(e.target.value)}
@@ -82,7 +111,7 @@ const Base = ({ all, open, handleClose, title, component }) => {
                   )
                 ) : filtered.length > 0 ? (
                   filtered.map((item, index) => (
-                    <Box className="groupList">
+                    <Box className="groupList" key={index}>
                       <Box className="d-flex">
                         <Typography component="span" variant="body1">
                           {item.name}
@@ -97,7 +126,7 @@ const Base = ({ all, open, handleClose, title, component }) => {
                     color="secondary"
                     p={2}
                   >
-                    نتیجه ای پیدا نکردم ...
+                    {t("home.base.didnot-find-any-results")}
                   </Typography>
                 )}
                 {/* End Search For If */}
@@ -105,7 +134,10 @@ const Base = ({ all, open, handleClose, title, component }) => {
             </Container>
           </Box>
 
-          <Box sx={{ display: { xs: "none", md: "block" } }} className="GruopWin">
+          <Box
+            sx={{ display: { xs: "none", md: "block" } }}
+            className="GruopWin"
+          >
             <IconButton
               onClick={() => handleClose()}
               aria-label="close"
@@ -115,7 +147,7 @@ const Base = ({ all, open, handleClose, title, component }) => {
             </IconButton>
             <OutlinedInput
               id="outlined-adornment-weight"
-              placeholder={`${title} خود را جستجو کنید`}
+              placeholder={`${title} ${t("home.base.search-yourself")}`}
               color="success"
               fullWidth
               onChange={(e) => setSearch(e.target.value)}
@@ -130,8 +162,13 @@ const Base = ({ all, open, handleClose, title, component }) => {
                 )
               ) : filtered.length > 0 ? (
                 filtered.map((item, index) => (
-                  <Box className="groupList">
-                    <Box className="d-flex">
+                  <Box className="groupList" key={index}>
+                    <Box
+                      className="d-flex"
+                      onClick={() =>
+                        handleSelect({ alias: item.alias, name: item.name })
+                      }
+                    >
                       <Typography component="span" variant="body1">
                         {item.name}
                       </Typography>
@@ -145,7 +182,7 @@ const Base = ({ all, open, handleClose, title, component }) => {
                   color="secondary"
                   p={2}
                 >
-                  نتیجه ای پیدا نکردم ...
+                  {t("home.base.didnot-find-any-results")}
                 </Typography>
               )}
               {/* End Search For If */}

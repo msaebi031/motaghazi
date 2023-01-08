@@ -1,5 +1,5 @@
 //Import React
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 // Import Mui
 import { Box, Button, CircularProgress } from "@mui/material";
@@ -18,8 +18,11 @@ import Demand_Mob from "./Demand_Mob";
 
 // Import InfiniteScroll
 import InfiniteScroll from "react-infinite-scroller";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
 const Demands = () => {
+  const { t } = useTranslation("basic");
   // ======= Redux ======== //
   const { demand } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -48,10 +51,21 @@ const Demands = () => {
       });
   };
 
+  if (demand.loading)
+    return (
+      <Box
+        className="text-center w-100"
+        py={4}
+        display={{ xs: "none", md: "block" }}
+      >
+        <CircularProgress color="puper" />
+      </Box>
+    );
+
   return (
     <Fragment>
       {/* Start Demand and if For Windows */}
-      {fullScreenMd ? <Demand_Win demand={demand} /> : ""}
+      {fullScreenMd ? <Demand_Win demand={demand} icon={demand.icon} /> : ""}
       {/* End Demand and if For Windows */}
 
       {/* Start Demand and if For Mobile */}
@@ -66,7 +80,7 @@ const Demands = () => {
             </Box>
           }
         >
-          <Demand_Mob demand={demand} />
+          <Demand_Mob demand={demand} icon={demand.icon} />
         </InfiniteScroll>
       ) : (
         ""
@@ -90,7 +104,7 @@ const Demands = () => {
             className="btnPlus"
             onClick={() => handleAddDemend()}
           >
-            نمایش تقاضای بیشتر
+            {t("home.demand.moreDemand")}{" "}
           </Button>
         )}
       </Box>

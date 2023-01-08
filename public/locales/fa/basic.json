@@ -1,0 +1,97 @@
+{
+  "home": {
+    "motaghazi": "سامانه متقاضی",
+    "navbar": {
+      "root": "صفحه اصلی",
+      "blog": "بلاگ",
+      "terms-conditions": "قوانین و مقررات",
+      "about": "درباره ما",
+      "contact": "تماس با ما",
+      "support": "پشتیبانی"
+    },
+    "footerMenu": {
+      "home": "خانه",
+      "asnaf": "پنل فروشگاهی",
+      "messages": "پیام ها",
+      "panel": "پنل کاربری",
+      "newDemand": "تقاضای جدید"
+    },
+    "registrationDemand": "ثبت آگهی تقاضا",
+    "placeholderSerach": "دنبال چی میگردی؟",
+    "category_location": {
+      "all": "(همه)",
+      "grouping": "دسته بندی",
+      "location": "موقعیت"
+    },
+    "category": {
+      "all": "all",
+      "all-categories": "دسته بندی ها (همه)",
+      "comingBack": "بازگشت"
+    },
+    "location": {
+      "all": "all",
+      "allfa": "(همه)",
+      "iranAll": "ایران (همه)",
+      "comingBack": "بازگشت"
+    },
+    "base": {
+      "search-yourself": "خود را جستجو کنید",
+      "didnot-find-any-results": "نتیجه ای پیدا نکردم ..."
+    },
+    "existArrow": {
+      "subset": "زیر مجموعه"
+    },
+    "filter": {
+      "filters": "فیلتر ها",
+      "clear-all": "پاک کردن همه",
+      "item": "ایتم",
+      "view": "مشاهده"
+    },
+    "search": {
+      "search-among-all-requests": "جستجوی در بین تمام تقاضا ها",
+      "location": "موقعیت",
+      "grouping": "دسته بندی",
+      "search": "جستجو",
+      "all-categories": "دسته بندی ها (همه)",
+      "filters": "فیلتر ها",
+      "filtersAcase": "فیلتر ها (1مورد)"
+    },
+    "signin": {
+      "users-sign-in": "ورود کاربران",
+      "shop-panel": "پنل فروشگاهی",
+      "appSlogan": " اولین سامانه مختص ثبت تقاضا به روش هدفمند"
+    },
+    "footer": {
+      "appDescription": "ایده بازار تقاضای مجازی در مرکز مالکیت معنوی ثبت و در WPO پتنت شده است.",
+      "patentLink": "لینک ثبت اختراع",
+      "socialNetworks": " شبکه های اجتماعی",
+      "access": " دسترسی سریع",
+      "rules": " قوانین و مقررات",
+      "symbols": " نمادهای اعتماد الکترونیکی"
+    },
+    "content": {
+      "category": {
+        "applicants": "متقاضیان",
+        "comingBack": "بازگشت"
+      }
+    },
+    "demand": {
+      "new": "نو",
+      "likeNew": "در حد نو",
+      "worked": "کار کرده",
+      "toman": "تومان",
+      "adaptive": "توافقی",
+      "moreDemand": "نمایش تقاضای بیشتر"
+    },
+    "swiperItem": {
+      "titleFirst": "چگونه خوب بخریم!",
+      "descriptionFirst": "هنگام خرید به جای گشتن به دنبال فروشندگان در بازار یا فضای مجازی، خیلی راحت فروشندگان را با خبر کنید",
+      "titleSecond": "برای خرید یک آگهی تقاضا ثبت کنید",
+      "descriptionSecond": "کافیه برای خرید انواع کالای دیجیتال، لوازم خانه، خرید و اجاره ملک، خودرو، تجهیزات یا مواد اولیه صنعتی ثبت تقاضا کنید",
+      "titleThird": "تقاضای خود را به بازار ارسال کنید",
+      "descriptionThird": "سپس شرایط خریدتان به صورت هوشمند برای فروشندگان در بازار ارسال می شود",
+      "titleFourth": "بهترین قیمت و نتیجه را دریافت کنید",
+      "descriptionFourth": "نتیجه: بدون هزینه فروشندگان را از تقاضای خود با خبر کرده تا موجب صرفه جویی در وقت و هزینه های شما بشود"
+    }
+  }
+}

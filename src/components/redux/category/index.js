@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { HYDRATE } from "next-redux-wrapper";
+import { SortCategory } from "../../Home/Header/Search/Category_Location/Utils/Sort";
 
 const initialState = {
   all: [],
@@ -6,10 +8,12 @@ const initialState = {
   parent: [],
   open: false,
   label: "دسته بندی ها (همه)",
+  select: "",
   show: "",
   bShow: "",
   name: {},
   rootSelect: "",
+  i18: null,
 };
 
 const cartSlice = createSlice({
@@ -17,7 +21,21 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addRootCategory: (state, action) => {
-      state.root = [{ ...action.payload }, ...state.root];
+      state.root = [...state.root, { ...action.payload }];
+    },
+    sortRootCategory: (state) => {
+      state.root = SortCategory({ category: state.parent, data: state.root });
+    },
+    sortParentCategory: (state) => {
+      var newArray = [];
+      state.parent.map((items) => {
+        const data = {
+          code: items.code,
+          item: SortCategory({ category: state.parent, data: items.item }),
+        };
+        newArray.push(data);
+      });
+      state.parent = newArray;
     },
     addAllCategory: (state, action) => {
       state.all = action.payload;
@@ -44,6 +62,19 @@ const cartSlice = createSlice({
     handleChangeRootSelect: (state, action) => {
       state.rootSelect = action.payload;
     },
+    handleChangei18: (state, action) => {
+      state.i18 = action.payload;
+    },
+    handleChangeSelect: (state, action) => {
+      state.select = action.payload;
+    },
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      state.label = action.payload.category.label;
+      state.show = action.payload.category.show;
+      state.select = action.payload.category.select;
+    },
   },
 });
 
@@ -57,6 +88,10 @@ export const {
   handleChangeBShow,
   handleChangeName,
   handleChangeRootSelect,
+  handleChangei18,
+  handleChangeSelect,
+  sortRootCategory,
+  sortParentCategory,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

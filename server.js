@@ -2,8 +2,6 @@
 const next = require("next");
 const express = require("express");
 const server = express();
-server.use(express.json()); // for json
-server.use(express.urlencoded({ extended: true })); // for form data
 
 const dev = process.env.NODE_ENV !== "production";
 const hostname = "localhost";

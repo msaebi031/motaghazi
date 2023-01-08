@@ -7,6 +7,8 @@ import {
   addParentCategory,
   addRootCategory,
   handleOpenCategory,
+  sortParentCategory,
+  sortRootCategory,
 } from "../../../../redux/category";
 import {
   addAllLocation,
@@ -14,6 +16,7 @@ import {
   addNeighbourhoodsLocation,
   addProvincesLocation,
   handleOpenLocation,
+  handleSortCitiesLocation,
 } from "../../../../redux/location";
 // Import Utils
 import http from "../../../../utils/ConfigDefaults";
@@ -23,8 +26,11 @@ import Base from "./Utils/Base";
 import Category from "./Category";
 // Import Location
 import Location from "./Location";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
 const Category_Location = () => {
+  const { t } = useTranslation("basic");
   // ======= Get Category Location ======== //
   const { category, location } = useSelector((state) => state);
 
@@ -34,13 +40,13 @@ const Category_Location = () => {
   // ======= UseEffect For Add ======== //
   useEffect(() => {
     // For Add Category
-    if (!category.all.length > 0) {
+    if (!category.root.length > 0) {
       http
-        .get("/category/categories")
+        .get("/category/categories?sort=order")
         .then(async (result) => {
           dispatch(addAllCategory(result.data.categories));
           var newArray = [];
-          result.data.categories?.map((item) => {
+          await result.data.categories?.map((item) => {
             if (item.parent != null) {
               const index = newArray.findIndex(
                 (p) => p.code == item.parent.code
@@ -55,7 +61,7 @@ const Category_Location = () => {
                     {
                       alias: find.alias,
                       code: find.code,
-                      name: `${find.name} (همه)`,
+                      name: `${find.name} ${t("home.category_location.all")}`,
                       Utitle: true,
                     },
                     item,
@@ -67,11 +73,16 @@ const Category_Location = () => {
                 newArray[index] = array;
               }
             } else {
+              console.log(item);
               dispatch(addRootCategory(item));
             }
           });
           dispatch(addParentCategory(newArray));
           console.log(newArray);
+
+          //Sort Category
+          dispatch(sortRootCategory());
+          dispatch(sortParentCategory());
         })
         .catch((err) => console.log(err));
       // For Add Location
@@ -121,6 +132,9 @@ const Category_Location = () => {
             }
           });
           dispatch(addNeighbourhoodsLocation(newNeighbourhoods));
+
+          //Sort City Location
+          dispatch(handleSortCitiesLocation());
         })
         .catch((err) => console.log(err));
     }
@@ -133,7 +147,8 @@ const Category_Location = () => {
         all={category.all}
         open={category.open}
         handleClose={() => dispatch(handleOpenCategory())}
-        title="دسته بندی"
+        title={t("home.category_location.grouping")}
+        type="category"
         component={
           <Category handleClose={() => dispatch(handleOpenCategory())} />
         }
@@ -144,7 +159,8 @@ const Category_Location = () => {
         all={location.all}
         open={location.open}
         handleClose={() => dispatch(handleOpenLocation())}
-        title="موقعیت"
+        title={t("home.category_location.location")}
+        type="location"
         component={
           <Location handleClose={() => dispatch(handleOpenLocation())} />
         }

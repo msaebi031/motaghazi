@@ -1,10 +1,5 @@
 // demand
 #demand {
-  img {
-    margin: 18px auto 5px;
-    width: 87%;
-    border-radius: 10px;
-  }
   .titleCard {
     @include textTrancate;
     font-weight: 600;
@@ -61,6 +56,29 @@
     &::after {
       left: -20px;
       border-right: 20px solid transparent;
+    }
+  }
+  .imgNoMobileDemand {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    width: 90%;
+    height: 115px;
+    text-align: center;
+    margin: 4% auto 0;
+    img {
+      margin: auto;
+      width: 42.5%;
+      border-radius: 10px;
+      padding: 0 5px;
+      height: 100%;
+      opacity: 0.75;
+      filter: grayscale(1);
+    }
+    svg {
+      color: $secondary;
+      font-size: 65px;
+      margin: auto 0;
+      height: 100%;
     }
   }
 }

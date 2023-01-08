@@ -24,17 +24,36 @@ import {
   SearchRounded,
 } from "@mui/icons-material";
 
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+
 const Navbar_Mobile = () => {
   // ======= UseState OPen ======== //
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const router = useRouter();
   // ======= Redux ======== //
   const { location } = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  const { t } = useTranslation("basic");
+
   // ======= Handles ======== //
-  // ======= Handle For OPen Menu ======== //
+  //Handle For OPen Menu
   const handleOpen = () => {
     setOpen(!open);
+  };
+
+  const handleSubmit = () => {
+    router.replace(
+      {
+        query: { ...router.query, search },
+      },
+      null,
+      {
+        scroll: false,
+      }
+    );
   };
 
   return (
@@ -44,8 +63,8 @@ const Navbar_Mobile = () => {
         <Box
           component="img"
           src={"/imgs/logo-mobile.svg"}
-          alt="سامانه متقاضی"
-          title="سامانه متقاضی"
+          alt={t("home.motaghazi")}
+          title={t("home.motaghazi")}
           className="logoMob"
         />
         <IconButton onClick={() => handleOpen()} className="menuIcon">
@@ -56,8 +75,9 @@ const Navbar_Mobile = () => {
       <Box className="d-flex align-center h-100 search" mt={1.5} mb={0.7}>
         <OutlinedInput
           id="outlined-adornment-weight"
-          placeholder="دنبال چی میگردی؟"
+          placeholder={t("home.placeholderSerach")}
           sx={{ width: "75%" }}
+          onChange={(e) => setSearch(e.target.value)}
         />
 
         <Typography
@@ -69,7 +89,11 @@ const Navbar_Mobile = () => {
         >
           {location.label}
         </Typography>
-        <SearchRounded color="success" fontSize="small" />
+        <SearchRounded
+          color="success"
+          fontSize="small"
+          onClick={() => handleSubmit()}
+        />
       </Box>
       {/* End  Search*/}
       {/* Start  Drawer Menu*/}
@@ -89,8 +113,8 @@ const Navbar_Mobile = () => {
           <Box
             component="img"
             src={"/imgs/logo.svg"}
-            alt="سامانه متقاضی"
-            title="سامانه متقاضی"
+            alt={t("home.motaghazi")}
+            title={t("home.motaghazi")}
             className="logoMob"
           />
           <IconButton onClick={() => handleOpen()}>
@@ -111,7 +135,7 @@ const Navbar_Mobile = () => {
                 variant="subtitle2"
                 color="secondary"
               >
-                صفحه اصلی
+                {t("home.navbar.root")}
               </Typography>
 
               <HouseOutlined color="success" />
@@ -126,7 +150,7 @@ const Navbar_Mobile = () => {
                   variant="subtitle2"
                   color="secondary"
                 >
-                  پشتیبانی
+                  {t("home.navbar.support")}
                 </Typography>
                 <SupportAgentOutlined color="primary" />
               </Box>

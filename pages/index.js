@@ -5,6 +5,7 @@ import Header from "../src/components/Home/Header";
 import { addDataDemand } from "../src/components/redux/demand";
 import { wrapper } from "../src/components/redux/store/configureStore";
 import http from "../src/components/utils/ConfigDefaults";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Home = () => {
   return (
@@ -21,13 +22,19 @@ const Home = () => {
   );
 };
 export const getServerSideProps = wrapper.getServerSideProps(
-  async ({ store }) => {
+  async (context) => {
     const res = (
       await http.get(
         "/requirement/requirements?limit=24&sort=createDate&sortDirection=-1"
       )
     ).data.requirements;
-    store.dispatch(addDataDemand(res));
+    context.store.dispatch(addDataDemand(res));
+    return {
+      props: {
+        ...(await serverSideTranslations(context.locale, ["basic"])),
+        // Will be passed to the page component as props
+      },
+    };
   }
 );
 

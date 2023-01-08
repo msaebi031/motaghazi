@@ -23,16 +23,26 @@
   .imgNoMobileDemand {
     background-color: #f4f4f4;
     border-radius: 10px;
-    margin: 12px 0 12px;
-    height: 80%;
+    margin: 12px 0;
+    margin-left: 13px !important;
+    width: 90px;
+    height: 100px;
     text-align: center;
     img {
-      width: 60px;
+      margin: auto;
+      width: 67%;
+      border-radius: 10px;
       padding: 0 5px;
-      height: 60%;
+      height: 100%;
       opacity: 0.75;
       -webkit-filter: grayscale(1);
       filter: grayscale(1);
+    }
+    svg {
+      color: $secondary;
+      font-size: 45px;
+      margin: auto 0;
+      height: 100%;
     }
   }
 }

@@ -1,6 +1,6 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  swcMinify: true,
-};
+const { i18n } = require("./next-i18next.config");
 
-module.exports = nextConfig;
+module.exports = {
+  swcMinify: true,
+  i18n,
+};

@@ -2,8 +2,12 @@
 import { Avatar, Box, Container, Typography, Link } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { Instagram } from "@mui/icons-material";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation("basic");
+
   // ======= Time ======== //
   const today = new Date();
   const date = today.getFullYear();
@@ -28,14 +32,13 @@ const Footer = () => {
               color="danger.main"
               fontWeight="600"
             >
-              ایده بازار تقاضای مجازی در مرکز مالکیت معنوی ثبت و در WPO پتنت شده
-              است.
+              {t("home.footer.appDescription")}
             </Typography>
             <Link
               href="https://patents.google.com/patent/WO2021191653A1/en?oq=2021191653"
               target="_blank"
             >
-              لینک ثبت اختراع
+              {t("home.footer.patentLink")}
             </Link>
           </Grid2>
           {/* End right of ownership */}
@@ -58,7 +61,7 @@ const Footer = () => {
                 fontWeight="bold"
                 color="secondary.dark"
               >
-                شبکه های اجتماعی
+                {t("home.footer.socialNetworks")}
               </Typography>
               <Box display="block" mt={4}>
                 <Link href="https://instagram.com/moteghazi" target="_blank">
@@ -80,14 +83,14 @@ const Footer = () => {
                 fontWeight="bold"
                 color="secondary.dark"
               >
-                دسترسی سریع
+                {t("home.footer.access")}
               </Typography>
               <Box display="block" mt={4}>
                 <Link
                   href="https://blog.moteghazi.com/terms-conditions"
                   target="_blank"
                 >
-                  قوانین و مقررات
+                  {t("home.footer.rules")}
                 </Link>
               </Box>
             </Box>
@@ -103,7 +106,7 @@ const Footer = () => {
                 fontWeight="bold"
                 color="secondary.dark"
               >
-                نمادهای اعتماد الکترونیکی
+                {t("home.footer.symbols")}
               </Typography>
               <Box display="flex" alignItems="center" mt={4}>
                 <Link href="/">

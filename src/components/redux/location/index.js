@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { SortCityLocation } from "../../Home/Header/Search/Category_Location/Utils/Sort";
 
 const initialState = {
   all: [],
@@ -45,6 +46,16 @@ const cartSlice = createSlice({
     handleChangeNameLocation: (state, action) => {
       state.name = action.payload;
     },
+    handleSortCitiesLocation: (state) => {
+      state.cities.map((items, index) => {
+        const array = state.cities[index];
+        array.item = SortCityLocation({
+          neighbourhoods: state.neighbourhoods,
+          data: items.item,
+        });
+        state.cities[index] = array;
+      });
+    },
   },
 });
 
@@ -58,6 +69,7 @@ export const {
   handleChangeShowLocation,
   handleChangeBShowLocation,
   handleChangeNameLocation,
+  handleSortCitiesLocation,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

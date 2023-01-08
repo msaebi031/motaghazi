@@ -1,4 +1,4 @@
-// Import Mui 
+// Import Mui
 import {
   Box,
   Button,
@@ -22,12 +22,29 @@ import { handleOpenLocation } from "../../../../redux/location";
 import { handleOpenFilter } from "../../../../redux/filter";
 // Import React
 import { Fragment, useState } from "react";
+import { useRouter } from "next/router";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
 const Search_Child = () => {
-
+  const { t } = useTranslation("basic");
+  const [search, setSearch] = useState("");
+  const router = useRouter();
   // ======= Redux ======== //
   const dispatch = useDispatch();
-  const { category, location } = useSelector((state) => state);
+  const { category, location, filter } = useSelector((state) => state);
+
+  const handleSubmit = () => {
+    router.replace(
+      {
+        query: { ...router.query, search },
+      },
+      null,
+      {
+        scroll: false,
+      }
+    );
+  };
 
   return (
     <Fragment>
@@ -44,9 +61,10 @@ const Search_Child = () => {
               <Grid2 item md={4.7}>
                 <OutlinedInput
                   id="outlined-adornment-weight"
-                  placeholder="جستجوی در بین تمام تقاضا ها"
+                  placeholder={t("home.search.search-among-all-requests")}
                   fullWidth
                   color="success"
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </Grid2>
               <Grid2
@@ -55,10 +73,16 @@ const Search_Child = () => {
                 md={3}
                 onClick={() => dispatch(handleOpenLocation())}
               >
-                <Selector name={"موقعیت"} dic={location.label} />
+                <Selector
+                  name={t("home.search.location")}
+                  dic={location.label}
+                />
               </Grid2>
               <Grid2 item md={3} onClick={() => dispatch(handleOpenCategory())}>
-                <Selector name={"دسته بندی"} dic={category.label} />
+                <Selector
+                  name={t("home.search.grouping")}
+                  dic={category.label}
+                />
               </Grid2>
               <Grid2 item md={1.3}>
                 <Button
@@ -66,8 +90,9 @@ const Search_Child = () => {
                   variant="contained"
                   endIcon={<SearchRounded />}
                   color="successLight"
+                  onClick={() => handleSubmit()}
                 >
-                  جستجو
+                  {t("home.search.search")}
                 </Button>
               </Grid2>
             </Grid2>
@@ -87,17 +112,15 @@ const Search_Child = () => {
               py={2}
               px={1}
               sx={
-                category.label == "دسته بندی ها (همه)"
+                !filter.count > 0
                   ? {
-                    boxShadow: "0 0 18px rgb(159 171 180 / 20%) !important",
-                    backgroundColor: "#fbfbfb !important",
-                  }
+                      boxShadow: "0 0 18px rgb(159 171 180 / 20%) !important",
+                      backgroundColor: "#fbfbfb !important",
+                    }
                   : { boxShadow: "0 0 18px rgb(159 171 180 / 60%)" }
               }
               onClick={() =>
-                category.label != "دسته بندی ها (همه)"
-                  ? dispatch(handleOpenFilter())
-                  : ""
+                !filter.count > 0 ? dispatch(handleOpenFilter()) : ""
               }
             >
               <FilterAltOutlined fontSize="small" />
@@ -107,9 +130,9 @@ const Search_Child = () => {
                 color="secondary.dark"
                 pr={1}
               >
-                {category.label == "دسته بندی ها (همه)"
-                  ? "فیلتر ها"
-                  : "فیلتر ها (1مورد)"}
+                {!filter.count > 0
+                  ? t("home.search.filters")
+                  : t("home.search.filtersAcase")}
               </Typography>
             </Box>
           </Grid2>

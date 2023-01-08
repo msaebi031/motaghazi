@@ -2,7 +2,8 @@
 import { useRouter } from "next/router";
 // Import React
 import { Fragment, createRef } from "react";
-
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 // Import Redux
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -27,6 +28,7 @@ export const handleSelectArrow = (code) => {
 };
 
 const Location = ({ handleClose }) => {
+  const { t } = useTranslation("basic");
   // ======= Redux ======== //
   const { location } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -56,9 +58,7 @@ const Location = ({ handleClose }) => {
   const handleSelect = ({ alias, code, name }) => {
     const pathname = router.asPath.split("/");
     dispatch(handleChangeLabelLocation(name));
-    // router.push({ href: "/", query: { myQueryParam: code } });
-    router.push(SetRouterLocation(alias, pathname[3]), null, {
-      shallow: true,
+    router.replace(SetRouterLocation(alias, pathname[3]), null, {
       scroll: false,
     });
     handleClose();
@@ -100,7 +100,7 @@ const Location = ({ handleClose }) => {
               </Box>
             </Box>
             {/*Start location Provinces Map */}
-            {location.provinces.map((items) => {
+            {location.provinces.map((items, index) => {
               {
                 /*Start find For If */
               }
@@ -110,6 +110,7 @@ const Location = ({ handleClose }) => {
               if (find) {
                 return (
                   <ExistArrow
+                    key={index}
                     data={items}
                     handleSelectArrow={handleSelectArrow}
                     root="cities"
@@ -118,7 +119,11 @@ const Location = ({ handleClose }) => {
                 );
               } else {
                 return (
-                  <SelectItem parent={items} handleSelect={handleSelect} />
+                  <SelectItem
+                    key={index}
+                    parent={items}
+                    handleSelect={handleSelect}
+                  />
                 );
               }
               {
@@ -134,23 +139,23 @@ const Location = ({ handleClose }) => {
               onClick={() => handleBack()}
             >
               <KeyboardArrowRightRoundedIcon />
-              <Box component="span">بازگشت</Box>
+              <Box component="span">{t("home.category.comingBack")}</Box>
             </Box>
             <Box
               onClick={() =>
                 handleSelect({
                   alias: location.name.alias,
-                  name: `${location.name.name} (همه)`,
+                  name: `${location.name.name} ${t("home.location.allfa")}`,
                 })
               }
             >
               <Box component="span" className="d-flex">
-                {location.name.name} (همه)
+                {location.name.name} {t("home.location.allfa")}
               </Box>
             </Box>
             {/* Start  location BShow For If*/}
             {location.bShow == "cities"
-              ? findCity(location.show).map((parent) => {
+              ? findCity(location.show).map((parent, index) => {
                   {
                     /*Start find For If */
                   }
@@ -160,6 +165,7 @@ const Location = ({ handleClose }) => {
                   if (find) {
                     return (
                       <ExistArrow
+                        key={index}
                         data={parent}
                         handleSelectArrow={handleSelectArrow}
                         root="neighbourhoods"
@@ -167,16 +173,24 @@ const Location = ({ handleClose }) => {
                     );
                   } else {
                     return (
-                      <SelectItem parent={parent} handleSelect={handleSelect} />
+                      <SelectItem
+                        key={index}
+                        parent={parent}
+                        handleSelect={handleSelect}
+                      />
                     );
                   }
                   {
                     /*End find For If */
                   }
                 })
-              : findNeighbourhoods(location.show).map((parent) => {
+              : findNeighbourhoods(location.show).map((parent, index) => {
                   return (
-                    <SelectItem parent={parent} handleSelect={handleSelect} />
+                    <SelectItem
+                      key={index}
+                      parent={parent}
+                      handleSelect={handleSelect}
+                    />
                   );
                 })}
             {/* Start  location BShow For If*/}

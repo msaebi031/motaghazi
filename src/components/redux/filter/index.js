@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
   open: false,
+  count: null,
 };
 
 const cartSlice = createSlice({
@@ -11,9 +13,17 @@ const cartSlice = createSlice({
     handleOpenFilter: (state) => {
       state.open = !state.open;
     },
+    handleChangeCount: (state, action) => {
+      state.count = action.payload;
+    },
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      state.count = action.payload.filter.count;
+    },
   },
 });
 
-export const { handleOpenFilter } = cartSlice.actions;
+export const { handleOpenFilter, handleChangeCount } = cartSlice.actions;
 
 export default cartSlice.reducer;

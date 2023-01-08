@@ -16,8 +16,11 @@ import { PlaceOutlined, QueryBuilderOutlined } from "@mui/icons-material";
 // Import Utils
 import { timeAgo } from "../../../utils/ConvertTime";
 import { statusColor } from "./Utils/ConfigColorDemand";
+// Import next-i18next
+import { useTranslation } from "next-i18next";
 
-const Demand_Win = ({ demand }) => {
+const Demand_Win = ({ demand, icon }) => {
+  const { t } = useTranslation("basic");
   return (
     <Grid2 container spacing={2} pt={2.5} px={0}>
       {/* Start Card Demand Size md,lg */}
@@ -55,7 +58,11 @@ const Demand_Win = ({ demand }) => {
                 ""
               )}
               <Card className="card">
-                <CardMedia component="img" image="/imgs/noImgCard.png" />
+                <CardMedia>
+                  <Box className="imgNoMobileDemand">
+                    {icon ?? <Box component="img" src="/imgs/logo.svg" />}
+                  </Box>
+                </CardMedia>
                 <CardContent className="cardContent">
                   <Typography
                     component="div"
@@ -94,7 +101,9 @@ const Demand_Win = ({ demand }) => {
                         component="div"
                         color="successLight.main"
                       >
-                        {item.budget !== 0 ? `${item.budget} تومان` : "توافقی"}
+                        {item.budget !== 0
+                          ? `${item.budget} ${t("home.demand.toman")}`
+                          : t("home.demand.adaptive")}
                       </Typography>
                     </Box>
                   </Box>
