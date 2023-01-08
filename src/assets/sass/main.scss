@@ -12,4 +12,10 @@
 @import "footer";
 @import "mobile/home/header";
 @import "mobile/home/demand";
-// @import "footer";
+// showRequest
+@import "showDemand/desktop";
+@import "showDemand/mobile";
+
+// registerDemand
+@import "./registerDemand/desktop";
+@import "./registerDemand/mobile";

@@ -26,6 +26,30 @@ const theme = createTheme({
       main: "#686868",
       dark: "#3d3d3d",
     },
+    red: {
+      main: "#f44336"
+    },
+    primary: {
+      main: "#08c"
+    },
+    blue: {
+      dark: "#6449d9",
+      main: "#6438e2",
+      light: "#a244e0",
+      // contrastText: "#7e31b0"
+    },
+    dark: {
+      // dark: "#3d3d3d",
+      // main: "",
+      light: "#3e3e3e"
+    },
+    brown: {
+      main: "#7b7b7b",
+      light: "#646464",
+      dark: "#565656",
+      contrastText: "#535353"
+    },
+
     success: {
       main: "#19bfaf",
     },
@@ -34,6 +58,9 @@ const theme = createTheme({
     },
     danger: {
       main: "#be1064",
+    },
+    info: {
+      main: "#6610f2"
     },
     puper: {
       main: "#7e31b0",
@@ -44,6 +71,9 @@ const theme = createTheme({
     light: {
       main: "#ffffff",
     },
+    warning: {
+      main: "#1ebea5"
+    },
     darkMenu: {
       main: "#121212",
     },
@@ -51,3 +81,5 @@ const theme = createTheme({
 });
 
 export default theme;
+
+
