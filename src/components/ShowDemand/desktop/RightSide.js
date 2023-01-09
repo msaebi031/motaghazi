@@ -31,6 +31,7 @@ const RightSide = () => {
   // ======= Redux ======== //
   const { showdemand } = useSelector((state) => state);
   const requirement = showdemand.data;
+  console.log(requirement.location);
 
   // ======= StatusColor ======== //
   const status = statusColor(requirement.type);
@@ -105,8 +106,8 @@ const RightSide = () => {
                     fontSize={{ xs: "14px", sm: "16px" }}
                     color="dark.dark"
                   >
-                    {requirement.location[0].neighbourhood?.name ??
-                      requirement.location[0].city.name}
+                    {/* {showdemand.data.location[0].neighbourhood?.name ??
+                      showdemand.data.location[0].city.name} */}
                   </Typography>
                 </Box>
                 <Box
@@ -180,7 +181,7 @@ const RightSide = () => {
                     variant="body2"
                     color="dark.dark"
                   >
-                    {timeAgo(requirement.releaseDate)}
+                    {/* {timeAgo(requirement.releaseDate)} */}
                   </Typography>
                 </Box>
                 {status ? (
