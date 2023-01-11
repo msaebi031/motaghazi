@@ -120,7 +120,7 @@ const Search_Child = () => {
                   : { boxShadow: "0 0 18px rgb(159 171 180 / 60%)" }
               }
               onClick={() =>
-                !filter.count > 0 ? dispatch(handleOpenFilter()) : ""
+                filter.count > 0 ? dispatch(handleOpenFilter()) : ""
               }
             >
               <FilterAltOutlined fontSize="small" />

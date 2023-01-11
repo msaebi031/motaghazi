@@ -16,7 +16,7 @@ const initialState = {
   i18: null,
 };
 
-const cartSlice = createSlice({
+const categorySlice = createSlice({
   name: "category",
   initialState,
   reducers: {
@@ -92,6 +92,6 @@ export const {
   handleChangeSelect,
   sortRootCategory,
   sortParentCategory,
-} = cartSlice.actions;
+} = categorySlice.actions;
 
-export default cartSlice.reducer;
+export default categorySlice.reducer;

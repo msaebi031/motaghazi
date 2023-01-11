@@ -26,12 +26,25 @@ import { Fragment } from "react";
 import { LoadingButton } from "@mui/lab";
 // Import next-i18next
 import { useTranslation } from "next-i18next";
+// Import Router
+import { useRouter } from "next/router";
+import { SetRouterCategory } from "../../../Content/Category/utils";
 
 const Filter = () => {
   const { t } = useTranslation("basic");
   // ======= Redux ======== //
   const { category, filter } = useSelector((state) => state);
   const dispatch = useDispatch();
+  // ======= UseRouter ======== //
+  const router = useRouter();
+
+  const handleClearAll = () => {
+    const pathname = router.asPath.split("/");
+    router.replace(SetRouterCategory("all", pathname[2]), null, {
+      scroll: false,
+    });
+    dispatch(handleOpenFilter());
+  };
 
   return (
     <Fragment>
@@ -58,7 +71,7 @@ const Filter = () => {
                 {t("home.filter.filters")}
               </Button>
 
-              <IconButton>
+              <IconButton onClick={() => handleClearAll()}>
                 <Typography component="span" variant="caption">
                   {t("home.filter.clear-all")}
                 </Typography>

@@ -8,7 +8,7 @@ const initialState = {
   icon: null,
 };
 
-const cartSlice = createSlice({
+const demandSlice = createSlice({
   name: "demand",
   initialState,
   reducers: {
@@ -33,6 +33,7 @@ const cartSlice = createSlice({
       state.data = action.payload.demand.data;
       state.icon = action.payload.demand.icon;
       state.loading = action.payload.demand.loading;
+      state.count = action.payload.demand.count;
     },
   },
 });
@@ -43,6 +44,6 @@ export const {
   changeDataDemand,
   handleChangeLoading,
   handleChangeIcon,
-} = cartSlice.actions;
+} = demandSlice.actions;
 
-export default cartSlice.reducer;
+export default demandSlice.reducer;

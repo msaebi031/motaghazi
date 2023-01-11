@@ -2,8 +2,8 @@
 import { Fragment, useEffect, useState } from "react";
 
 // Import Mui
-import { Box, Button, CircularProgress } from "@mui/material";
-import { AddRounded } from "@mui/icons-material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import { AddRounded, ErrorRounded } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -20,11 +20,13 @@ import Demand_Mob from "./Demand_Mob";
 import InfiniteScroll from "react-infinite-scroller";
 // Import next-i18next
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 const Demands = () => {
   const { t } = useTranslation("basic");
+  const router = useRouter();
   // ======= Redux ======== //
-  const { demand } = useSelector((state) => state);
+  const { demand, location } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   // ======= useState ======== //
@@ -39,9 +41,14 @@ const Demands = () => {
   //  handle for Add demandand
   const handleAddDemend = () => {
     setLoading(true);
+    const { location, search, category } = router.query;
+    const locations =
+      location && location != "iran" ? `&location=${location}` : "";
+    const categorys = category ? `&category=${category}` : "";
+    const searchs = search ? `&searchType=title&search=${search}` : "";
     http
       .get(
-        `/requirement/requirements?limit=24&sort=createDate&sortDirection=-1&skip=${demand.count}`
+        `/requirement/requirements?limit=24&sort=createDate&sortDirection=-1&skip=${demand.count}${searchs}${locations}${categorys}`
       )
       .then(async (res) => {
         await dispatch(addDataDemand(res.data.requirements));
@@ -50,6 +57,23 @@ const Demands = () => {
         setLoading(false);
       });
   };
+
+  if (demand.data.length <= 0) {
+    return (
+      <Box p={2} className="notFoundDemand">
+        <ErrorRounded />
+        <Typography
+          component="span"
+          color="secondary.dark"
+          variant="p"
+          pr={6}
+          fontSize={{ xs: 14, sm: 16 }}
+        >
+          {t("home.demand.notFound")}
+        </Typography>
+      </Box>
+    );
+  }
 
   if (demand.loading)
     return (

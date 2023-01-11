@@ -87,7 +87,10 @@ const Footer_Menu = () => {
           <Container maxWidth="sm" className="d-flex justify-between">
             {/* Start Items Map */}
             {items.map((item, index) => (
-              <Link key={index} href={item.href}>
+              <Link
+                key={index}
+                href={typeof item.href == "object" ? item.href[0] : item.href}
+              >
                 <Box
                   className={
                     typeof item.href == "object"

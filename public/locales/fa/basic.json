@@ -81,7 +81,8 @@
       "worked": "کار کرده",
       "toman": "تومان",
       "adaptive": "توافقی",
-      "moreDemand": "نمایش تقاضای بیشتر"
+      "moreDemand": "نمایش تقاضای بیشتر",
+      "notFound": "تقاضایی در این بخش یافت نشد."
     },
     "swiperItem": {
       "titleFirst": "چگونه خوب بخریم!",

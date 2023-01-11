@@ -6,7 +6,7 @@ const initialState = {
   count: null,
 };
 
-const cartSlice = createSlice({
+const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
@@ -24,6 +24,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { handleOpenFilter, handleChangeCount } = cartSlice.actions;
+export const { handleOpenFilter, handleChangeCount } = filterSlice.actions;
 
-export default cartSlice.reducer;
+export default filterSlice.reducer;

@@ -23,7 +23,7 @@ const Content = () => {
         </Grid2>
         {/* End Grid category */}
         {/* Start Grid Swiper , Demand */}
-        <Grid2 item md={8.5}>
+        <Grid2 xs={12} md={8.5}>
           <Swipers />
           <Demands />
         </Grid2>

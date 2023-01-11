@@ -17,7 +17,7 @@ export const wrapper = createWrapper(() =>
       filter,
       showdemand,
     },
-    devTools: true,
+    devTools: false,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
   })
 );

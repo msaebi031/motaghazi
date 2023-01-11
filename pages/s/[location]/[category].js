@@ -7,6 +7,7 @@ import {
   handleChangeShow,
 } from "../../../src/components/redux/category";
 import {
+  changeCount,
   changeDataDemand,
   handleChangeIcon,
   handleChangeLoading,
@@ -22,10 +23,11 @@ export default function SearchCategory({ location, category }) {
 export const getServerSideProps = wrapper.getServerSideProps(
   async (context) => {
     const path = context.params;
+    const search = context.query?.search ?? "";
     // Start Get Information Category //
     context.store.dispatch(handleChangeLoading(true));
     await http
-      .get("/search?search=" + path.category)
+      .get(`/search?search=${path.category}&searchType=title&search=${search}`)
       .then(async (result) => {
         const { categories, count } = result.data;
         await context.store.dispatch(
@@ -40,6 +42,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
               : ""
           )
         );
+
         await context.store.dispatch(handleChangeSelect(categories[0].alias));
         // await context.store.dispatch(
         //   handleChangeIcon(
@@ -65,6 +68,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         await context.store.dispatch(
           changeDataDemand(result.data.requirements)
         );
+        await context.store.dispatch(changeCount(24));
       })
       .catch((err) => console.log(err));
     // end Get Demand //

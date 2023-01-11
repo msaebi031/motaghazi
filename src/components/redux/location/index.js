@@ -14,7 +14,7 @@ const initialState = {
   name: {},
 };
 
-const cartSlice = createSlice({
+const locationSlice = createSlice({
   name: "location",
   initialState,
   reducers: {
@@ -70,6 +70,6 @@ export const {
   handleChangeBShowLocation,
   handleChangeNameLocation,
   handleSortCitiesLocation,
-} = cartSlice.actions;
+} = locationSlice.actions;
 
-export default cartSlice.reducer;
+export default locationSlice.reducer;
