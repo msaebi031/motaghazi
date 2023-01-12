@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-import { SortCategory } from "../../Home/Header/Search/Category_Location/Utils/Sort";
+import { SortCategory } from "../../desktop/Home/Header/Search/Category_Location/Utils/Sort";
 
 const initialState = {
   all: [],

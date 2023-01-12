@@ -1,0 +1,89 @@
+// Start LeftSide
+#leftSide-desktop {
+    border-radius: 10px !important;
+    max-width: 100% !important;
+    margin-top: 55px !important;
+    box-shadow: 0 0 35px rgb(159 171 180 / 13%) !important;
+
+
+    .box-img {
+        margin: 20.8px;
+        border-radius: 10px;
+        background-color: #f4f4f4;
+    }
+
+
+    .a-leftside {
+        background: $mainGreen;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90% !important;
+        height: 2.2rem !important;
+        border-radius: 150px !important;
+        margin: auto;
+    }
+
+
+    .box-btn {
+        padding-bottom: 21.6px;
+        padding-top: 24px;
+
+        button {
+            border-radius: 150px !important;
+            background-color: transparent;
+            box-shadow: none;
+            font-weight: 800 !important;
+
+            &:hover {
+                box-shadow: none;
+                background-color: $lightDark !important;
+                transition: all .3s;
+            }
+
+            span {
+                padding-left: 11px;
+            }
+
+        }
+    }
+
+
+
+
+
+    .btn-card-active {
+        border-radius: 150px !important;
+        // background-color: transparent;
+        box-shadow: none;
+        // font-weight: 800 !important;
+        direction: ltr;
+
+        span {
+            margin-left: 9px;
+
+            svg {
+                font-size: 19px !important;
+            }
+        }
+    }
+
+    .btn-card-active-hover:hover {
+        box-shadow: none;
+        background-color: $lightDark !important;
+        transition: all .3s;
+    }
+
+    .btn-card-active-hover-none {
+        box-shadow: none;
+        background-color: $theme-color !important;
+    }
+
+    .fableftSide {
+        box-shadow: none !important;
+        margin-left: 13px !important;
+    }
+}
+
+// End LeftSide

@@ -1,0 +1,159 @@
+// Start Open-Dialog
+#open-dialog {
+
+    .MuiDialog-paperScrollPaper {
+        overflow-y: inherit !important;
+    }
+
+    .MuiDialogContent-root {
+        // padding: 20px 10px 20px 10px !important;
+
+        @media screen and (max-width: 911px) {
+            padding: 0 !important;
+        }
+    }
+
+    span {
+        font-size: 13px !important;
+    }
+
+    .btn-openmodal-left {
+        border-radius: 15px !important;
+        height: 47px;
+        font-size: 15px;
+        margin-top: 18px;
+    }
+
+
+
+    // modalOne
+    .btn-clearmodalOne-left {
+        border-radius: 6px !important;
+        background-color: $red;
+        position: absolute;
+        bottom: 96%;
+        right: 95.5%;
+    }
+
+
+
+
+
+    .gruop-mob {
+        h6 {
+            @include textTrancate;
+        }
+
+    }
+
+
+
+    // dialog-mob
+
+    .box-dialog-mob {
+        button {
+            border-radius: 5px !important;
+            height: 55px;
+            font-size: 15px;
+            margin-top: 26px;
+        }
+    }
+}
+
+// End Open-Dialog
+
+
+
+
+// Start Open-DialogTwo
+#open-dialogTwo {
+
+    .MuiDialog-paperScrollPaper {
+        overflow-y: inherit !important;
+    }
+
+    .MuiDialogContent-root {
+        // padding: 20px 10px 20px 10px !important;
+
+        @media screen and (max-width: 911px) {
+            padding: 0 !important;
+        }
+    }
+
+    // modalTwo
+    .btn-clearmodalTwo-left {
+        border-radius: 6px !important;
+        background-color: $red;
+        position: absolute;
+        bottom: 93%;
+        right: 95%;
+    }
+
+
+
+    .btn-openmodal-left {
+        border-radius: 10px !important;
+        height: 47px;
+        font-size: 15px;
+        margin-top: 18px;
+    }
+
+
+
+    .text-box__input {
+        padding: 10px !important;
+        height: 34px;
+        width: 94.8%;
+        line-height: 2;
+        color: black;
+        font-weight: 600;
+        box-shadow: 0 0 3px #8f8f8f;
+        background-color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+        margin-top: 10px;
+        resize: none;
+    }
+
+
+    .text-box__input:focus {
+        height: 80px;
+        outline: none;
+    }
+
+
+    // modalTwo-mob
+    .text-box__input-mob {
+        padding: 10px !important;
+        height: 46px;
+        width: 96%;
+        line-height: 2;
+        color: black;
+        font-weight: 600;
+        box-shadow: 0 0 18px rgb(159 171 180 / 60%);
+        background-color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+        margin-top: 10px;
+        resize: none;
+    }
+
+    .text-box__input-mob:focus {
+        height: 80px !important;
+        outline: none !important;
+    }
+
+    .box-dialog-two-mob {
+        button {
+            border-radius: 5px !important;
+            height: 55px;
+            font-size: 15px;
+            margin-top: 26px;
+        }
+    }
+
+}
+
+// End Open-DialogTwo

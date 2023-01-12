@@ -1,0 +1,25 @@
+//Start BoxNew
+#boxNew {
+    div {
+      background-image: url("/imgs/box-new/bg-img-boxnew.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 10px !important;
+    }
+  
+    button {
+      span {
+        padding-left: 12px;
+      }
+    }
+  
+    .avatar-boxnew {
+      background: $bg-avatar !important;
+      width: 40px !important;
+      height: 39px !important;
+      margin-right: 18px;
+    }
+  }
+  
+  //End BoxNew

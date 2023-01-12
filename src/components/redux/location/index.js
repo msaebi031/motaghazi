@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SortCityLocation } from "../../Home/Header/Search/Category_Location/Utils/Sort";
+import { SortCityLocation } from "../../desktop/Home/Header/Search/Category_Location/Utils/Sort";
 
 const initialState = {
   all: [],

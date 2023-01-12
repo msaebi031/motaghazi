@@ -1,6 +1,6 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Home from "../..";
-import { configCover } from "../../../src/components/Home/Content/Demand/Utils/ConfigCover";
+// import { configCover } from "../../../src/components/Home/Content/Demand/Utils/ConfigCover";
 import {
   handleChangeLabelCategory,
   handleChangeSelect,
@@ -16,7 +16,7 @@ import { handleChangeCount } from "../../../src/components/redux/filter";
 import { wrapper } from "../../../src/components/redux/store/configureStore";
 import http from "../../../src/components/utils/ConfigDefaults";
 
-export default function SearchCategory({ location, category }) {
+export default function SearchCategory() {
   return <Home />;
 }
 

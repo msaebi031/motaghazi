@@ -1,0 +1,51 @@
+// Start btnModal
+#btnModal {
+    padding-bottom: 21.6px;
+    padding-top: 18.4px;
+
+    .btn-right {
+        border-radius: 8px !important;
+        background-color: transparent;
+        box-shadow: none;
+        width: 47.5% !important;
+        padding: 16px 0px 16px 0px;
+
+        &:hover {
+            box-shadow: none;
+            background-color: $lightDark !important;
+            transition: all .3s;
+        }
+
+        span {
+            padding-left: 11px;
+
+            svg {
+                font-size: 25px !important;
+            }
+        }
+
+    }
+
+
+
+    .btn-left {
+        border-radius: 8px !important;
+        // background-color: $green-btn;
+        box-shadow: none;
+        width: 47.5% !important;
+        padding: 16px 0px 16px 0px;
+
+        span {
+            padding-left: 11px;
+
+            svg {
+                font-size: 25px !important;
+            }
+        }
+
+    }
+
+
+}
+
+// Start btnModal

@@ -1,5 +1,5 @@
-$footer-brown: #646464;
 
+// Start Footer
 footer {
   background-color: $footer;
 
@@ -50,12 +50,22 @@ footer {
 
     .avatar-img {
       border-radius: 10px !important;
-      height: 96px !important;
-      width: 70px !important;
+      height: 91px !important;
+      width: 65px !important;
+      background-color: $theme-color;
+      padding: 5px;
+
+      span {
+        color: $light-main;
+        font-size: 61px;
+        line-height: 94px;
+        font-weight: 400;
+      }
     }
 
     .avatar-img-ml {
-      margin-left: 12px;
+      margin-left: 12px !important;
     }
   }
 }
+// End Footer

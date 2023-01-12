@@ -1,4 +1,5 @@
-// Navbar
+// Start Header
+//Start Navbar
 #navbar-mobile {
   background-image: linear-gradient(-90deg, $theme-color, $purple);
   padding: 10px 0;
@@ -19,10 +20,12 @@
       border: none;
     }
     span {
-      width: 20%;
+      @include textTrancate();
+      width: 30%;
     }
   }
 }
+//End Navbar
 .logoMob {
   width: 95px;
   height: 30px;
@@ -37,3 +40,4 @@
     padding: 22px 15px;
   }
 }
+// End Header

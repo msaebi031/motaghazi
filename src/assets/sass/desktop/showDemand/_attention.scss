@@ -1,0 +1,39 @@
+
+//start attention-desktop
+#attention-desktop {
+    position: relative;
+    margin-top: 80px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 35px rgb(159 171 180 / 13%);
+
+
+    div {
+        position: absolute;
+        top: -39px;
+        padding-top: 16.8px;
+        padding-bottom: 16.8px;
+        padding-left: 16px;
+        padding-right: 16px;
+        border-radius: 5px;
+        box-shadow: 0 10px 32px rgb(65 65 65 / 8%);
+        color: $red-main;
+        background-color: $light-main;
+
+
+        h6 {
+            padding-right: 8px;
+            line-height: 1.8;
+        }
+    }
+
+    p {
+        margin-top: 24px;
+        line-height: 1.8;
+    }
+}
+//start attention-desktop

@@ -1,0 +1,48 @@
+// Start Footer-Menu
+#footer-menu {
+  .fixedBox {
+    box-shadow: 0 0 13px rgb(159 159 159 / 28%);
+    z-index: 1299;
+    background-color: #ffffff;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+  }
+
+  .box-item-before {
+    display: inline-block;
+    position: relative;
+    p {
+      font-weight: bold !important;
+    }
+    &::before {
+      position: absolute;
+      top: -2px;
+      right: calc(50% - 11.2px);
+      content: "";
+      border-top: solid 2px $green;
+      width: 1.5rem;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgb(25 191 175 / 72%);
+    }
+  }
+
+  .box-item-hover {
+    position: relative;
+    svg,
+    p {
+      &:hover {
+        font-weight: bold !important;
+        transition: all 0.3s;
+      }
+    }
+  }
+
+  .box-icon-fad {
+    position: absolute !important;
+    top: -25px !important;
+    box-shadow: none !important;
+  }
+}
+// End Footer-Menu

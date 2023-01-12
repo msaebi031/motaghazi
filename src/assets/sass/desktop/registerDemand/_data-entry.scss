@@ -1,0 +1,220 @@
+// dataentry
+#dataentry {
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 35px rgb(159 171 180 / 13%);
+    background-color: #fff;
+  
+    .style-input {
+      box-shadow: 0 0 3px #8f8f8f;
+      font-size: 13px !important;
+      background-color: $light-main !important;
+      cursor: pointer !important;
+      height: 49px;
+      color: black;
+      border: none !important;
+      border-radius: 5px !important;
+      padding-right: 8px !important;
+  
+      &:hover fieldset {
+        border-color: transparent !important;
+      }
+  
+      & input:valid + fieldset {
+        border-color: transparent !important;
+      }
+  
+      &:focus {
+        outline: none !important;
+      }
+    }
+  
+    .text-box__textarea {
+      // padding: 11px 18px 11px 18px !important;
+      padding-top: 4px !important;
+      padding-bottom: 7px !important;
+      height: 38.5px;
+      line-height: 2 !important;
+      color: black !important;
+      width: 100% !important;
+      box-shadow: 0 0 3px #8f8f8f;
+      background-color: $light-main !important;
+      cursor: pointer !important;
+      border-radius: 5px !important;
+      border: none !important;
+      margin-top: 13px !important;
+      resize: none !important;
+  
+      &:focus {
+        height: 108px !important;
+        min-height: 108px !important;
+        max-height: 108px !important;
+        outline: none;
+      }
+    }
+  
+    .style-btn {
+      box-shadow: 0 0 3px #8f8f8f;
+      font-size: 12px !important;
+      background-color: $light-main !important;
+      height: 49px;
+      color: black;
+      border-radius: 5px !important;
+      width: 100% !important;
+  
+      &:hover {
+        background-color: $hover-btn !important;
+      }
+    }
+  
+    .icon-input {
+      transition: all 0.3s;
+    }
+  
+    .title-box {
+      position: relative;
+  
+      &::after {
+        position: absolute;
+        content: "";
+        border-left: solid 2px $green;
+        margin-top: 3px;
+        border-radius: 95px;
+        height: 17px;
+        right: 139px;
+      }
+    }
+  
+    #select-image {
+      .title-box {
+        position: relative;
+  
+        &::after {
+          position: absolute;
+          content: "";
+          border-left: solid 2px #19bfaf;
+          margin-top: 5px;
+          border-radius: 95px;
+          height: 17px;
+          right: 151px;
+        }
+      }
+  
+      label {
+        background-color: #fff !important;
+        border-radius: 5px !important;
+        box-shadow: 0 0 3px #8f8f8f;
+        color: #616161 !important;
+        font-size: 15.6px;
+  
+        span {
+          color: #19bfaf;
+        }
+      }
+  
+      .flexFlow-true {
+        flex-flow: row-reverse !important;
+        justify-content: right !important;
+      }
+  
+      .flexFlow-false {
+        flex-flow: unset !important;
+      }
+  
+      .clear-icon-img {
+        border-radius: 6px !important;
+        background-color: #dc3545;
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        top: 5px !important;
+        left: 6.3px;
+  
+        svg {
+          font-size: 20px;
+        }
+      }
+    }
+  
+    // bottom-part
+    #bottom-part {
+      .box-form {
+        display: grid;
+        padding-top: 9.6px;
+        padding-bottom: 9.6px;
+        box-shadow: 0 0 3px #8f8f8f;
+        border-radius: 5px;
+        margin-top: 12.8px;
+      }
+  
+      input {
+        font-size: 13.2px !important;
+        font-weight: 500 !important;
+      }
+    }
+  }
+
+
+
+  
+  // modal-condition
+#modal-condition {
+  .modal-condition {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+    width: 350px !important;
+    background-color: #fff !important;
+    border-radius: 5px !important;
+    box-shadow: 0 0 5px rgb(0 0 0 / 30%) !important;
+    padding: 12px !important;
+
+    // span {
+    //     font-size: 12px !important;
+    // }
+
+    .modal-condition-btn {
+      border-radius: 6px !important;
+      background-color: #dc3545;
+      position: absolute;
+      bottom: 104.3% !important;
+      right: 96% !important;
+      width: 28px !important;
+      height: 28px !important;
+      top: -14px !important;
+
+      svg {
+        font-size: 21px !important;
+      }
+    }
+  }
+
+  .input-search-modal {
+    height: 35px !important;
+    border-radius: 0px !important;
+    border: 1px solid #eee !important;
+    font-size: 13px !important;
+
+    &:hover fieldset {
+      border-color: transparent !important;
+    }
+
+    & input:valid + fieldset {
+      border-color: transparent !important;
+    }
+
+    &:focus {
+      outline: none !important;
+    }
+
+    input {
+      padding: 8px !important;
+    }
+  }
+
+  .list-button-modal {
+    padding: 10px;
+    font-size: 15px;
+  }
+}

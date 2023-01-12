@@ -1,0 +1,18 @@
+//Start navbar-mob
+.navbar-mob-app {
+    a {
+        font-size: 19px !important;
+        color: $light !important;
+
+        span {
+            svg {
+                color: $light !important;
+                font-size: 29px !important;
+                margin-left: 9px;
+                margin-right: -24px;
+            }
+        }
+    }
+}
+
+//End navbar-mob

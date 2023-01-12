@@ -1,0 +1,58 @@
+
+
+//Start RightSide
+#rightSide-desktop {
+
+    .remove-icon {
+        margin-top: 3.2px;
+        margin-right: 10.4px;
+    }
+
+
+    .box-main {
+        margin-top: 20px !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        background-color: #fff !important;
+        border-radius: 10px !important;
+        box-shadow: 0 0 35px rgb(159 171 180 / 13%) !important;
+    }
+
+
+
+    .box-skeleton {
+        span {
+            height: 14px;
+        }
+
+        .span-1 {
+            width: 252px;
+            margin-bottom: 28px !important;
+        }
+
+        .span-3 {
+            margin-top: 36.8px !important;
+        }
+
+        .span-4 {
+            width: 150px !important;
+            margin-top: 64px !important;
+        }
+
+        .span-5 {
+            margin-top: 10px !important;
+        }
+    }
+
+    a {
+        color: $brown !important;
+        font-size: 14px !important;
+
+        &:hover {
+            color: black !important;
+            transition: all .3s;
+        }
+    }
+}
+
+//End RightSide

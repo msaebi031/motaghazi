@@ -8,14 +8,40 @@
 @import "desktop/home/demand";
 @import "desktop/home/category&location";
 @import "desktop/home/category";
-@import "desktop/home/footerMenu";
+@import "./mobile/home/footerMenu";
 @import "footer";
 @import "mobile/home/header";
 @import "mobile/home/demand";
-// showRequest
-@import "showDemand/desktop";
-@import "showDemand/mobile";
 
-// registerDemand
-@import "./registerDemand/desktop";
-@import "./registerDemand/mobile";
+
+//Start registerDemand Desktop
+@import "./desktop/registerDemand/box-new";
+@import "./desktop/registerDemand/box-grouping";
+@import "./desktop/registerDemand/data-entry";
+@import "./desktop/registerDemand/more-details";
+@import "./desktop/registerDemand/btn-store";
+//End registerDemand Desktop
+// mediaQuery 
+@import "./mediaQuery/registerDemand";
+//Start registerDemand Mobile
+@import "./mobile/registerDemand/navbar";
+//End registerDemand Mobile
+
+
+//Start showDemand deskTop
+@import "./desktop/showDemand/right-side";
+@import "./desktop/showDemand/more-details";
+@import "./desktop/showDemand/left-side";
+@import "./desktop/showDemand/attention";
+@import "./desktop/showDemand/dialog";
+//End showDemand deskTop
+//Start showDemand mobile
+@import "./mobile/showDemand/navbar";
+@import "./mobile/showDemand/btn-modal";
+@import "./mobile/showDemand/left-side";
+//End showDemand mobile
+
+
+
+// icoMoon
+@import "./icomoon";

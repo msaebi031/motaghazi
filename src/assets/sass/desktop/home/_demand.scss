@@ -1,5 +1,19 @@
-// demand
+//Start demand
 #demand {
+
+  .notFoundDemand {
+    background-color: #f7f9fb;
+    position: relative;
+    svg {
+      position: absolute;
+      top: 20px;
+      color: #fff;
+      background-color: #1ce5a0;
+      padding: 8px;
+      border-radius: 5px;
+    }
+  }
+  
   .titleCard {
     @include textTrancate;
     font-weight: 600;
@@ -83,15 +97,4 @@
   }
 }
 
-.notFoundDemand {
-  background-color: #f7f9fb;
-  position: relative;
-  svg {
-    position: absolute;
-    top: 20px;
-    color: #fff;
-    background-color: #1ce5a0;
-    padding: 8px;
-    border-radius: 5px;
-  }
-}
+//End demand

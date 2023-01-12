@@ -1,0 +1,68 @@
+// mediaQuery for size mobile
+@media screen and (max-width: 911px) {
+    #dataentry {
+        margin-top: 36px !important;
+        box-shadow: none !important;
+        background-color: transparent !important;
+
+        .style-input {
+            box-shadow: rgb(159 171 180 / 60%) 0px 0px 18px !important;
+            height: 55px !important;
+        }
+
+        .text-box__textarea {
+            height: 44.3px !important;
+            box-shadow: rgb(159 171 180 / 60%) 0px 0px 18px !important;
+        }
+
+        .style-btn {
+            box-shadow: rgb(159 171 180 / 60%) 0px 0px 18px !important;
+            height: 55px !important;
+        }
+
+        #select-image {
+            label {
+                box-shadow: rgb(159 171 180 / 60%) 0px 0px 18px !important;
+            }
+        }
+    }
+
+    #boxgrouping {
+        border-radius: 5px !important;
+
+        button {
+            font-weight: 400 !important;
+        }
+    }
+
+    #bottom-part {
+        .box-form {
+            background-color: #fff !important;
+            box-shadow: rgb(159 171 180 / 60%) 0px 0px 18px !important;
+        }
+    }
+
+    #moreDetails {
+        box-shadow: none !important;
+        background-color: transparent !important;
+        margin-top: 60px !important;
+
+        .style-btn {
+            box-shadow: rgb(159 171 180 / 60%) 0px 0px 18px !important;
+            height: 55px !important;
+        }
+    }
+
+    #btnStore {
+        float: none;
+
+        button {
+            border-radius: 5px;
+            background-color: $green;
+            padding: 13px 0px 13px 0px;
+            width: 100%;
+        }
+    }
+}
+
+//   mediaQuery for size mobile

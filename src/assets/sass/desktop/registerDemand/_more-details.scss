@@ -1,0 +1,40 @@
+// Start moreDetails
+#moreDetails {
+    margin-top: 34px;
+    // padding-top: 24px;
+    // padding-bottom: 24px;
+    // padding-left: 44.8px;
+    // padding-right: 44.8px;
+    border-radius: 10px;
+    box-shadow: 0 0 35px rgb(159 171 180 / 13%);
+    background-color: #fff;
+  
+    .title-box {
+      position: relative;
+  
+      &::after {
+        position: absolute;
+        content: "";
+        border-left: solid 2px #19bfaf;
+        margin-top: 3px;
+        border-radius: 95px;
+        height: 17px;
+        right: 151px;
+      }
+    }
+  
+    .style-btn {
+      box-shadow: 0 0 3px #8f8f8f;
+      font-size: 12px !important;
+      background-color: $light-main !important;
+      height: 49px;
+      color: black;
+      border-radius: 5px !important;
+      width: 100% !important;
+  
+      &:hover {
+        background-color: $hover-btn !important;
+      }
+    }
+  }
+  // End moreDetails
