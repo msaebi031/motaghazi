@@ -7,6 +7,14 @@ body {
   margin: 0;
   padding: 0;
   background-color: #fcfcfc;
+  &::-webkit-scrollbar {
+    background-color: #f3f3f3;
+    width: 14px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #cfcfcf;
+    border-radius: 5px;
+  }
 }
 
 ul {

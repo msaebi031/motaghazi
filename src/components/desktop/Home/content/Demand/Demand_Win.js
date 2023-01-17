@@ -17,7 +17,7 @@ import { PlaceOutlined, QueryBuilderOutlined } from "@mui/icons-material";
 import { timeAgo } from "../../../../utils/ConvertTime";
 import { statusColor } from "./Utils/ConfigColorDemand";
 // Import next-translate
-import useTranslation from 'next-translate/useTranslation';
+import useTranslation from "next-translate/useTranslation";
 
 const Demand_Win = ({ demand, icon, local }) => {
   const { t } = useTranslation("basic");
@@ -28,7 +28,7 @@ const Demand_Win = ({ demand, icon, local }) => {
       {demand.data.map((item, index) => {
         let title = item.title.replaceAll(/\s+/g, "-");
         let status = statusColor(item.type);
-        let find = local.find((e) => e.code == item.code);
+        let find = local ? local.find((e) => e.code == item.code) : "";
         return (
           <Grid2
             key={index}
@@ -39,7 +39,7 @@ const Demand_Win = ({ demand, icon, local }) => {
             className="p-relative"
             id="demand"
           >
-            <Link scroll={false} href={`/r/${item.code}/${title}`} title={item.title}>
+            <Link href={`/r/${item.code}/${title}`} title={item.title}>
               {status ? (
                 <Box
                   component="div"
