@@ -2,8 +2,8 @@
 import { Avatar, Box, Container, Typography, Link } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { Instagram } from "@mui/icons-material";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 
 const Footer = () => {
   const { t } = useTranslation("basic");

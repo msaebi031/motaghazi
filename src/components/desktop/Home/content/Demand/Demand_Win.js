@@ -16,8 +16,8 @@ import { PlaceOutlined, QueryBuilderOutlined } from "@mui/icons-material";
 // Import Utils
 import { timeAgo } from "../../../../utils/ConvertTime";
 import { statusColor } from "./Utils/ConfigColorDemand";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 
 const Demand_Win = ({ demand, icon, local }) => {
   const { t } = useTranslation("basic");
@@ -39,7 +39,7 @@ const Demand_Win = ({ demand, icon, local }) => {
             className="p-relative"
             id="demand"
           >
-            <Link href={`/r/${item.code}/${title}`} title={item.title}>
+            <Link scroll={false} href={`/r/${item.code}/${title}`} title={item.title}>
               {status ? (
                 <Box
                   component="div"

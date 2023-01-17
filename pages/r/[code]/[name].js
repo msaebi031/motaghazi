@@ -4,7 +4,6 @@ import { wrapper } from "../../../src/components/redux/store/configureStore";
 import http from "../../../src/components/utils/ConfigDefaults";
 import Head from "next/head";
 import ShowDemand from "../../../src/components/desktop/ShowDemand";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Code = ({ title, getCode }) => {
   useEffect(() => {
@@ -39,29 +38,21 @@ const Code = ({ title, getCode }) => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  async (context) => {
-    console.log(context.params);
-    const getCode = context.params.code;
+Code.getInitialProps = wrapper.getInitialPageProps(
+  (store) => async (context) => {
+    const getCode = context.query.code;
     const title = await http
       // .get(
       //   `https://moteghazi.com/api/1.0.0/requirement/requirement?code=${getCode}`
       // )
       .get(`/code`)
       .then(async (res) => {
-        await context.store.dispatch(addDataRequest(res.data.requirement));
+        await store.dispatch(addDataRequest(res.data.requirement));
         const title = res.data.requirement.title;
         return title;
       })
       .catch((err) => console.log(err));
-    return {
-      props: {
-        title: title ?? "سامانه متقاضی",
-        getCode,
-        ...(await serverSideTranslations(context.locale, ["basic"])),
-        // Will be passed to the page component as props
-      },
-    };
+    return { title: title ?? "سامانه متقاضی", getCode };
   }
 );
 

@@ -6,8 +6,8 @@ import { Fragment } from "react";
 import { Box, Button } from "@mui/material";
 // Import Mui Icons
 import { AddRounded } from "@mui/icons-material";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 
 const Navbar_Win = () => {
   const { t } = useTranslation("basic");

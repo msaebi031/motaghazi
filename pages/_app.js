@@ -1,15 +1,19 @@
 import { ThemeProvider } from "@mui/material";
 import theme from "../src/components/Theme";
 import { wrapper } from "../src/components/redux/store/configureStore";
-import { appWithTranslation } from "next-i18next";
+import { Provider } from "react-redux";
+
 import "../src/assets/css/main.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, ...rest }) {
+  const { store, props } = wrapper.useWrappedStore(rest);
   return (
     <ThemeProvider theme={theme}>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...props.pageProps} />
+      </Provider>
     </ThemeProvider>
   );
 }
 
-export default wrapper.withRedux(appWithTranslation(MyApp));
+export default MyApp;

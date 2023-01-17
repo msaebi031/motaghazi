@@ -1,45 +1,53 @@
+// Import Mui Icon
 import { Clear, Done } from "@mui/icons-material";
-import { Button, IconButton, ListItemButton, Modal, OutlinedInput, TextareaAutosize, Typography } from "@mui/material";
+// Import Mui
+import { Box, Button, IconButton, ListItemButton, Modal, OutlinedInput, TextareaAutosize, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import { Box } from "@mui/system"
+// Import React
 import { Fragment, useState } from "react";
+// Import BottomPart
 import BottomPart from "./BottomPart";
 
 
 const InputAndBtn = () => {
 
-    // useState Input
+    // ======= UseEstate ======== //
     const [title, setTitle] = useState("");
+    const [searchModal, setSearchModal] = useState("");
+    const [open, setOpen] = useState(false);
     const [description, setDescription] = useState("");
+    const [selectedValue, setSelectedValue] = useState(defaultText);
 
-
-
-    //   selectCondition
+    // ======= Items selectCondition ======== // 
     const items = [{ name: 'نو' }, { name: 'در حد نو' }, { name: 'کار کرده' }, { name: 'نیاز به تعمیر' }];
 
 
-    // searchmodal
-    const [searchModal, setSearchModal] = useState("");
+    // ======= Const Search ======== // 
     const filterItems = items.filter(items => items.name.includes(searchModal));
 
-    const [open, setOpen] = useState(false);
+    // ======= defaultText ======== // 
     var defaultText = "انتخاب کنید";
-    const [selectedValue, setSelectedValue] = useState(defaultText);
 
+
+    // ======= Handlers ======== // 
+    // handle open Modal
     const handleClickOpen = () => {
         setOpen(true);
     };
 
+    // handle List Item
     const handleListItemClick = (value) => {
         handleValueOnClose(value);
     };
 
+    // handle ValueOnClose
     const handleValueOnClose = (value) => {
         setSelectedValue(value);
         setOpen(false);
     };
 
 
+    // handle OnClose
     const handleClose = () => {
         handleValueOnClose(selectedValue);
     };
@@ -49,6 +57,7 @@ const InputAndBtn = () => {
 
     return (
         <Fragment>
+            {/* Start InputAndBtn*/}
             <Grid2 id="input-andbtn" container spacing={3} mt={{ xs: 3, md: 4.5 }}>
                 <Grid2 item xs={12} md={6}>
                     <Box>
@@ -60,14 +69,14 @@ const InputAndBtn = () => {
                                 <Done className="icon-input" color="successLight" />
                             ) : ""}
                         </Box>
-                        <OutlinedInput value={title} onChange={e => setTitle(e.target.value)} name="title" type="text" color="light" className="style-input" fullWidth />
+                        <OutlinedInput fullWidth value={title} onChange={e => setTitle(e.target.value)} name="title" type="text" color="light" className="style-input" />
                     </Box>
 
                     <Box mt={3.3}>
                         <Typography color="dark.light" fontSize="12.5px" mb="13px" component="p" variant="body2">
                             موقعیت خود را انتخاب نمایید*
                         </Typography>
-                        <Button className="style-btn" fullWidth >انتخاب کنید</Button>
+                        <Button className="style-btn"   >انتخاب کنید</Button>
                     </Box>
                 </Grid2>
 
@@ -83,7 +92,7 @@ const InputAndBtn = () => {
                         </Box>
                         <TextareaAutosize
                             value={description} onChange={e => setDescription(e.target.value)}
-                            fullWidth
+
                             required
                             name="description"
                             className="text-box__textarea"
@@ -95,7 +104,7 @@ const InputAndBtn = () => {
                         <Typography mb="13px" color="dark.light" fontSize="12.5px" component="p" variant="body2">
                             وضعیت کالای درخواستی خود را انتخاب نمایید
                         </Typography>
-                        <Button className="style-btn" fullWidth onClick={handleClickOpen}>
+                        <Button className="style-btn" onClick={handleClickOpen}>
                             {selectedValue}
                         </Button>
                         <Modal
@@ -113,7 +122,7 @@ const InputAndBtn = () => {
                                         name="search"
                                         value={searchModal}
                                         type="search"
-                                        fullWidth
+
                                         placeholder="جستجو کنید"
                                     />
                                     {filterItems ? (
@@ -142,7 +151,9 @@ const InputAndBtn = () => {
                     </Box>
                 </Grid2>
             </Grid2>
+            {/* Component BottomPart*/}
             <BottomPart items={items} selectedValue={selectedValue} />
+            {/* End InputAndBtn*/}
         </Fragment>
     )
 }

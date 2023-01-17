@@ -1,0 +1,43 @@
+{
+    "show-demand": {
+        "attention": {
+            "noteText": "توجه داشته باشید",
+            "description": "همه تقاضا ها پس از تایید برای فروشگاه های مربوطه ارسال می شود و همزمان در سامانه نیز منتشر می شود. توصیه می شود با فروشگاه هایی که تایید هویت شده اند (با تیک آبی مشخص هستند) و شرایط تحویل در محل و یا درگاه امن را برای تبادل مالی در نظر گرفته اند معامله کنید."
+        },
+        "information": {
+            "applicant": "متقاضی",
+            "place-of-advertisement": "محل آگهی :",
+            "budget": "بودجه :",
+            "toman": "تومان",
+            "adaptive": "توافقی",
+            "demandTime": "زمان درج تقاضا :",
+            "situation": "وضعیت :",
+            "descriptionDemand": "توضیحات تقاضا"
+        },
+        "moreDetails": {
+            "moreDetailsDemand": "جزییات بیشتر تقاضا"
+        },
+        "shareBox": {
+            "demandImages": "تصاویر تقاضا",
+            "demandantContect": "تماس با متقاضی",
+            "share": "اشتراک گزاری",
+            "reportBugs": "گزارش اشکال",
+            "copyLink": "کپی لینک",
+            "copiedSuccess": "با موفقیت کپی شد",
+            "dialog": {
+                "items": {
+                    "text": "سایر موارد",
+                    "textOne": "خرید متغاضی انجام شده",
+                    "textTwo": "بودجه غیر واقعی و کم است",
+                    "textThree": "آگهی عرضه(فروش) می باشد",
+                    "textFour": "فعلا تصمیم به خرید ندارم",
+                    "textFive": "کالا در بازار مو جود نمی باشد"
+                },
+                "reason": "دلیل *",
+                "confirmation": "تایید",
+                "description": "توضیحات",
+                "reportedSuccess": "با موفقیت گزارش شد"
+            }
+        }
+    }
+}

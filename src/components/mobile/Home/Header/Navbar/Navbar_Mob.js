@@ -24,7 +24,8 @@ import {
   SearchRounded,
 } from "@mui/icons-material";
 
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from "next/router";
 
 const Navbar_Mobile = () => {

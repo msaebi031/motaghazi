@@ -26,8 +26,8 @@ import Base from "./Utils/Base";
 import Category from "./Category";
 // Import Location
 import Location from "./Location";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 
 const Category_Location = () => {
   const { t } = useTranslation("basic");
@@ -62,6 +62,7 @@ const Category_Location = () => {
                       alias: find.alias,
                       code: find.code,
                       name: `${find.name} ${t("home.category_location.all")}`,
+                      icon: find.icon,
                       Utitle: true,
                     },
                     item,

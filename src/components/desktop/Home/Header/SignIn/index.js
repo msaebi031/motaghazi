@@ -6,8 +6,8 @@ import { AddRounded, VpnKeyOutlined } from "@mui/icons-material";
 import Link from "next/link";
 // Import React
 import { Fragment } from "react";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 
 const Signin = () => {
   const { t } = useTranslation("basic");

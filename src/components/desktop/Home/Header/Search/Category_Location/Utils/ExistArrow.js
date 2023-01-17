@@ -4,8 +4,8 @@ import { Box, Typography } from "@mui/material";
 import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
 // Import React
 import { Fragment } from "react";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 
 const ExistArrow = ({ data, root, count, rootSelect, handleSelectArrow }) => {
   const { t } = useTranslation("basic");

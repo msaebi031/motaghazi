@@ -4,15 +4,25 @@ import { DoneAllRounded, KeyboardArrowRightRounded } from "@mui/icons-material";
 
 // Import Redux
 import { useDispatch, useSelector } from "react-redux";
-import { handleChangeBShow, handleChangeLabelCategory, handleChangeRootSelect, handleChangeShow } from "../../../../redux/category";
+import {
+  handleChangeBShow,
+  handleChangeLabelCategory,
+  handleChangeRootSelect,
+  handleChangeShow,
+} from "../../../../redux/category";
 
 // Import Utils
 import { SetRouterCategory, ShowCard } from "./utils";
 
 // Import Router
 import { useRouter } from "next/router";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from "next-translate/useTranslation";
+import {
+  resetDataDemand,
+  changeCount,
+  handleChangeLoading,
+} from "../../../../redux/demand";
 
 const Category = () => {
   const { t } = useTranslation("basic");
@@ -34,6 +44,11 @@ const Category = () => {
     if (rootSelect) {
       dispatch(handleChangeRootSelect(rootSelect));
     }
+
+    dispatch(resetDataDemand());
+    dispatch(changeCount(24));
+    dispatch(handleChangeLoading(true));
+
     router.replace(SetRouterCategory(alias, pathname[2]), null, {
       scroll: false,
     });

@@ -9,8 +9,8 @@ import Grid2 from "@mui/material/Unstable_Grid2";
 // Import Utils
 import { timeAgo } from "../../../../utils/ConvertTime";
 import { statusColor } from "../../../../desktop/Home/content/Demand/Utils/ConfigColorDemand";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 
 const Demand_Mob = ({ demand, icon, local }) => {
   const { t } = useTranslation("basic");
@@ -23,7 +23,9 @@ const Demand_Mob = ({ demand, icon, local }) => {
         let find = local.find((e) => e.code == items.code);
         return (
           <Grid2 key={index} item xs={12} className="p-relative" id="demand">
-            <Link href={`/r/${items.code}/${title}`} title={items.title}>
+            <Link scroll={false} href={`/r/${items.code}/${title}`} title={items.title}>
+            {/* <a href={`/r/${items.code}/${title}`}> */}
+
               {status ? (
                 <Box
                   component="div"
@@ -107,6 +109,7 @@ const Demand_Mob = ({ demand, icon, local }) => {
                   </Grid2>
                 </Grid2>
               </Card>
+            {/* </a> */}
             </Link>
           </Grid2>
         );

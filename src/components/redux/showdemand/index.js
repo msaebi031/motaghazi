@@ -26,10 +26,10 @@ const showDemandSlice = createSlice({
     },
   },
 
-  extraReducers: {
-    [HYDRATE]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(HYDRATE, (state, action) => {
       state.data = action.payload.showdemand.data;
-    },
+    });
   },
 });
 

@@ -1,0 +1,14 @@
+{
+  "locales": [
+    "fa"
+  ],
+  "defaultLocale": "fa",
+  "pages": {
+    "*": [
+      "basic"
+    ],
+    "/r/[code]/[name]": [
+      "show-demand"
+    ]
+  }
+}

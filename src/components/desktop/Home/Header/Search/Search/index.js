@@ -23,8 +23,8 @@ import { handleOpenFilter } from "../../../../../redux/filter";
 // Import React
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 
 const Search_Child = () => {
   const { t } = useTranslation("basic");

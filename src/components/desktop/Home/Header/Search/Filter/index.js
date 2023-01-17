@@ -24,8 +24,8 @@ import { handleOpenFilter } from "../../../../../redux/filter";
 // Import React
 import { Fragment } from "react";
 import { LoadingButton } from "@mui/lab";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 // Import Router
 import { useRouter } from "next/router";
 import { SetRouterCategory } from "../../../content/Category/utils";

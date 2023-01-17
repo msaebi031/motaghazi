@@ -9,6 +9,7 @@ import {
   Remove,
   RoomOutlined,
 } from "@mui/icons-material";
+import Grid2 from "@mui/material/Unstable_Grid2";
 // Import Next
 import Link from "next/link";
 // Import Utils
@@ -71,153 +72,32 @@ const RightSide = () => {
               >
                 متقاضی {requirement.title}
               </Typography>
-              {/* <Divider sx={{ display: { xs: "block", md: "none" } }} /> */}
-              <Box
-                mb={3}
-                mt={{ xs: 4.3, sm: 5 }}
-                display={{ xs: "block", sm: "flex" }}
-                justifyContent="space-between"
-              >
-                <Box
-                  justifyContent={{ xs: "space-between", sm: "inherit" }}
-                  className="d-flex align-center"
-                >
-                  <Box className="d-flex align-center">
-                    <RoomOutlined
-                      sx={{ fontSize: { xs: "19px", sm: "1.5rem" }, ml: 0.7 }}
-                      color="warning"
-                    />
-                    <Typography
-                      fontSize={{ xs: "14px", sm: "1rem" }}
-                      component="p"
-                      variant="body1"
-                      color="blue.main"
-                      fontWeight="800"
-                    >
-                      محل آگهی :
-                    </Typography>
-                  </Box>
-                  <Typography
-                    pr={2.5}
-                    component="p"
-                    variant="prightSide"
-                    fontWeight="600"
-                    fontSize={{ xs: "14px", sm: "16px" }}
-                    color="dark.dark"
-                  >
-                    {showdemand.data.location[0].neighbourhood?.name ??
-                      showdemand.data.location[0].city.name}
-                  </Typography>
-                </Box>
-                <Box
-                  justifyContent={{ xs: "space-between", sm: "inherit" }}
-                  mt={{ xs: 3.2, sm: 0 }}
-                  className="d-flex align-center"
-                >
-                  <Box className="d-flex align-center">
-                    <AttachMoneyOutlined
-                      sx={{ fontSize: { xs: "19.9px", sm: "1.5rem" }, ml: 0.7 }}
-                      color="warning"
-                    />
-                    <Typography
-                      fontSize={{ xs: "14px", sm: "1rem" }}
-                      component="p"
-                      variant="body1"
-                      color="blue.main"
-                      fontWeight="800"
-                    >
-                      بودجه :
-                    </Typography>
-                  </Box>
-                  <Typography
-                    fontWeight="600"
-                    fontSize={{ xs: "14px", sm: "1rem" }}
-                    pr={2.5}
-                    component="p"
-                    variant="body2"
-                    color="dark.dark"
-                  >
-                    {requirement.budget <= 0
+              <Grid2 container pb={{ xs: 1.5, md: 2.5 }}>
+                <Selector
+                  title="محل آگهی :"
+                  dic={
+                    showdemand.data.location[0].neighbourhood?.name ??
+                    showdemand.data.location[0].city.name
+                  }
+                />
+
+                <Selector
+                  title="بودجه :"
+                  dic={
+                    requirement.budget <= 0
                       ? " توافقی"
-                      : `${requirement.budget} تومان`}
-                  </Typography>
-                </Box>
-              </Box>
-              {/* oK */}
-              <Box
-                mb={3}
-                mt={{ xs: 3.2, sm: 5 }}
-                display={{ xs: "block", sm: "flex" }}
-                justifyContent="space-between"
-              >
-                {/* <Divider orientation="vertical" flexItem textAlign="center"/> */}
-                <Box
-                  justifyContent={{ xs: "space-between", sm: "inherit" }}
-                  className="d-flex align-center"
-                >
-                  <Box className="d-flex align-center">
-                    <AccessTimeOutlined
-                      fontSize="small"
-                      color="warning"
-                      sx={{ fontSize: { xs: "16.5px", sm: "1.3rem" }, ml: 0.7 }}
-                    />
-                    <Typography
-                      fontSize={{ xs: "14px", sm: "1rem" }}
-                      component="p"
-                      pr={0.6}
-                      variant="body1"
-                      color="blue.main"
-                      fontWeight="800"
-                    >
-                      زمان درج تقاضا :
-                    </Typography>
-                  </Box>
-                  <Typography
-                    fontWeight="600"
-                    fontSize={{ xs: "14px", sm: ".950rem" }}
-                    pr={2.5}
-                    component="p"
-                    variant="body2"
-                    color="dark.dark"
-                  >
-                    {timeAgo(requirement.releaseDate)}
-                  </Typography>
-                </Box>
-                {status ? (
-                  <Box
-                    justifyContent={{ xs: "space-between", sm: "inherit" }}
-                    mt={{ xs: 3.2, sm: 0 }}
-                    className="d-flex align-center"
-                  >
-                    <Box className="d-flex align-center">
-                      <ModeFanOffOutlined
-                        sx={{ fontSize: { xs: "19px", sm: "1.3rem" }, ml: 0.7 }}
-                        color="warning"
-                      />
-                      <Typography
-                        component="p"
-                        variant="body1"
-                        color="blue.main"
-                        fontWeight="800"
-                      >
-                        وضعیت :
-                      </Typography>
-                    </Box>
-                    <Typography
-                      fontWeight="600"
-                      fontSize={{ xs: "14px", sm: "1rem" }}
-                      pr={2.5}
-                      component="p"
-                      variant="body2"
-                      color="dark.dark"
-                    >
-                      {status.text}
-                    </Typography>
-                  </Box>
-                ) : (
-                  ""
-                )}
-              </Box>
+                      : `${requirement.budget} تومان`
+                  }
+                />
+
+                <Selector
+                  title="زمان درج تقاضا :"
+                  dic={timeAgo(requirement.releaseDate)}
+                />
+
+                {status ? <Selector title="وضعیت :" dic={status.text} /> : ""}
+              </Grid2>
+
               {/* oK */}
               <Divider />
               {/* OK */}
@@ -226,8 +106,8 @@ const RightSide = () => {
                   fontSize={{ xs: "15px", sm: "1rem", md: "1.1rem" }}
                   component="p"
                   variant="body1"
-                  color="blue.main"
-                  fontWeight="800"
+                  color="dark.dark"
+                  fontWeight="600"
                 >
                   توضیحات تقاضا
                 </Typography>
@@ -249,6 +129,42 @@ const RightSide = () => {
         </Box>
       </Box>
     </Fragment>
+  );
+};
+
+const Selector = ({ title, dic }) => {
+  return (
+    <Grid2 item xs={12} md={6}>
+      <Box
+        className="d-flex align-center"
+        justifyContent={{ xs: "space-between", md: "normal" }}
+        pb={2}
+      >
+        {/* <RoomOutlined
+                      sx={{ fontSize: { xs: "19px", sm: "1.3rem" }, ml: 0.7 }}
+                      color="puper"
+                    /> */}
+        <Typography
+          fontSize={{ xs: "13.5px", sm: "15px" }}
+          component="p"
+          variant="body1"
+          color="secondary.main"
+          fontWeight="800"
+        >
+          {title}
+        </Typography>
+        {/* </Box> */}
+        <Typography
+          pr={2}
+          component="p"
+          variant="prightSide"
+          fontSize={{ xs: "13px", sm: "14px" }}
+          color="dark.dark"
+        >
+          {dic}
+        </Typography>
+      </Box>
+    </Grid2>
   );
 };
 

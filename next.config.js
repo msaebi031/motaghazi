@@ -1,9 +1,18 @@
-const { i18n } = require("./next-i18next.config");
+const nextTranslate = require("next-translate");
 
 module.exports = {
   swcMinify: true,
-  i18n,
+  ...nextTranslate(),
   experimental: {
     scrollRestoration: true,
   },
+  // assetPrefix: BASE_PREFIX_FOR_APP,
+  // async rewrites() {
+  //   return [
+  //     {
+  //       source: `${BASE_PREFIX_FOR_APP}/_next/:path*`,
+  //       destination: "_next/:path*",
+  //     },
+  //   ];
+  // },
 };

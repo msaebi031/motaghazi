@@ -1,7 +1,7 @@
 // Import Mui
 import { Box, Typography } from "@mui/material";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 
 const ShowCard = ({ items, handleClick, rootSelect }) => {
 
@@ -15,9 +15,10 @@ const ShowCard = ({ items, handleClick, rootSelect }) => {
       px={2}
       onClick={() => handleClick(items.code, items.name, items.alias, rootSelect ?? "")}>
       {items.icon ?
-        <Typography color={items.color ? items.color :"#19bfaf"} className={items.icon} component="span" variant="body1" />
-        : null}
-
+        <Typography color={items.color ? items.color : "#19bfaf"} className={items.icon} component="span" variant="body1" />
+        :
+        <Typography color={items.color ? items.color : "#19bfaf"} className="icon-left" component="span" variant="body1" />
+      }
       <Typography
         component="span"
         variant="body1"

@@ -11,6 +11,17 @@ const app = next({ dev, hostname, port });
 const handle = app.getRequestHandler();
 
 app.prepare().then(async () => {
+  server.get("/_next/data/:buildId/v2/custom/:path*", (req, res) => {
+    const parsedUrl = parse(req.url, true);
+    // => incoming url: /_next/data/:buildId/v2/custom/:path
+    parsedUrl.pathname = parsedUrl.pathname.replace(
+      "v2",
+      req.headers["x-product"]
+    );
+    // => outgoing url: /_next/data/:buildId/:product/custom/:path
+    handle(req, res, parsedUrl);
+  });
+  // Let Next.js handle rest of the routes
   server.all("*", (req, res) => {
     return handle(req, res);
   });

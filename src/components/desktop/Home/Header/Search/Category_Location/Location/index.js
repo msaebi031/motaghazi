@@ -2,8 +2,8 @@
 import { useRouter } from "next/router";
 // Import React
 import { Fragment, createRef } from "react";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from "next-translate/useTranslation";
 // Import Redux
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -20,6 +20,11 @@ import { Box, Typography } from "@mui/material";
 // Import Utils
 import { ExistArrow, SelectItem } from "../Utils/ExistArrow";
 import { SetRouterLocation } from "../../../../content/Category/utils";
+import {
+  changeCount,
+  handleChangeLoading,
+  resetDataDemand,
+} from "../../../../../../redux/demand";
 
 // ======= handleSelectArrow ======== //
 export const handleSelectArrow = (code) => {
@@ -57,6 +62,9 @@ const Location = ({ handleClose }) => {
   // ======= Handle For Select ======== //
   const handleSelect = ({ alias, code, name }) => {
     const pathname = router.asPath.split("/");
+    dispatch(resetDataDemand());
+    dispatch(changeCount(24));
+    dispatch(handleChangeLoading(true));
     dispatch(handleChangeLabelLocation(name));
     router.replace(SetRouterLocation(alias, pathname[3]), null, {
       scroll: false,

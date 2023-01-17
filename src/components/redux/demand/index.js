@@ -15,6 +15,9 @@ const demandSlice = createSlice({
     addDataDemand: (state, action) => {
       state.data = [...state.data, ...action.payload];
     },
+    resetDataDemand: (state) => {
+      state.data = [];
+    },
     changeDataDemand: (state, action) => {
       state.data = action.payload;
     },
@@ -28,18 +31,19 @@ const demandSlice = createSlice({
       state.icon = action.payload;
     },
   },
-  extraReducers: {
-    [HYDRATE]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(HYDRATE, (state, action) => {
       state.data = action.payload.demand.data;
       state.icon = action.payload.demand.icon;
       state.loading = action.payload.demand.loading;
       state.count = action.payload.demand.count;
-    },
+    });
   },
 });
 
 export const {
   addDataDemand,
+  resetDataDemand,
   changeCount,
   changeDataDemand,
   handleChangeLoading,

@@ -23,8 +23,13 @@ import {
 } from "../../../../content/Category/utils";
 import { useRouter } from "next/router";
 import { handleChangeLabelLocation } from "../../../../../../redux/location";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from "next-translate/useTranslation";
+import {
+  changeCount,
+  handleChangeLoading,
+  resetDataDemand,
+} from "../../../../../../redux/demand";
 
 const Base = ({ all, open, handleClose, title, type, component }) => {
   const { t } = useTranslation("basic");
@@ -53,6 +58,9 @@ const Base = ({ all, open, handleClose, title, type, component }) => {
 
   const handleSelect = ({ alias, name }) => {
     const pathname = router.asPath.split("/");
+    dispatch(resetDataDemand());
+    dispatch(changeCount(24));
+    dispatch(handleChangeLoading(true));
     if (type == "category") {
       dispatch(handleChangeLabelCategory(name));
       router.replace(SetRouterCategory(alias, pathname[2]), null, {

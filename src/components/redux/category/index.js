@@ -69,12 +69,12 @@ const categorySlice = createSlice({
       state.select = action.payload;
     },
   },
-  extraReducers: {
-    [HYDRATE]: (state, action) => {
+  extraReducers: (builder) => {
+    builder.addCase(HYDRATE, (state, action) => {
       state.label = action.payload.category.label;
       state.show = action.payload.category.show;
       state.select = action.payload.category.select;
-    },
+    });
   },
 });
 

@@ -16,8 +16,8 @@ import {
 } from "@mui/icons-material";
 // Import Mui
 import { Box, Container, Fab, Typography } from "@mui/material";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from 'next-translate/useTranslation';
 
 const Footer_Menu = () => {
   const { t } = useTranslation("basic");

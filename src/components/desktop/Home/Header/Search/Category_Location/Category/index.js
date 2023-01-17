@@ -20,8 +20,13 @@ import { SetRouterCategory } from "../../../../content/Category/utils";
 import { useRouter } from "next/router";
 // Import React
 import { Fragment } from "react";
-// Import next-i18next
-import { useTranslation } from "next-i18next";
+// Import next-translate
+import useTranslation from "next-translate/useTranslation";
+import {
+  changeCount,
+  handleChangeLoading,
+  resetDataDemand,
+} from "../../../../../../redux/demand";
 
 // ======= handleSelectArrow ======== //
 export const handleSelectArrow = (code) => {
@@ -50,6 +55,9 @@ const Category = ({ handleClose }) => {
   //  Handle For Select Item
   const handleSelect = ({ alias, code, name }) => {
     const pathname = router.asPath.split("/");
+    dispatch(resetDataDemand());
+    dispatch(changeCount(24));
+    dispatch(handleChangeLoading(true));
     router.replace(SetRouterCategory(alias, pathname[2]), null, {
       scroll: false,
     });
